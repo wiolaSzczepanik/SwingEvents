@@ -1,0 +1,13 @@
+[
+    {
+        "date":"01.01.01",
+        "titleOfEvent":"Test Name",
+        "cityOfEvent":"Test City"
+    },
+    {
+        "date":"02.02.02",
+        "titleOfEvent":"Test Name 2",
+        "cityOfEvent":"Test City 2"
+    }
+
+]
