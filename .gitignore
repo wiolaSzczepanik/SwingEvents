@@ -6,3 +6,5 @@ SwingEvents.iml
 out/
 
 .vscode/
+
+*.tar
