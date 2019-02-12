@@ -78,9 +78,9 @@ const Articles = {
       function toEvent(event) {
          return {"title": event.titleOfEvent,
                 "venue": event.titleOfEvent, 
-                "start": event.date, 
-                "end": event.date, 
-                "tagList": ["boogie woogie", "lindy hop"]}
+                "start": event.startDate,
+                "end": event.endDate,
+                "tagList": event.tagList}
       }
 
       const newResponse = {"articles": events.map(toEvent), "articlesCount": 3};

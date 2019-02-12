@@ -4,22 +4,32 @@ import java.time.ZonedDateTime;
 
 public class Event {
 
-    private String date;
+    private String startDate;
+    private String endDate;
     private String titleOfEvent;
     private String cityOfEvent;
 
-    public Event(String date, String titleOfEvent, String cityOfEvent) {
-        this.date = date;
+    public Event(String startDate, String endDate, String titleOfEvent, String cityOfEvent) {
+        this.startDate = startDate;
+        this.endDate = endDate;
         this.titleOfEvent = titleOfEvent;
         this.cityOfEvent = cityOfEvent;
     }
 
-    public String getDate() {
-        return date;
+    public String getStartDate() {
+        return startDate;
     }
 
-    public void setDate(String date) {
-        this.date = date;
+    public void setStartDate(String startDate) {
+        this.startDate = startDate;
+    }
+
+    public String getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(String endDate) {
+        this.endDate = endDate;
     }
 
     public String getTitleOfEvent() {
@@ -41,7 +51,8 @@ public class Event {
     @Override
     public String toString() {
         return "Event{" +
-                "date='" + date + '\'' +
+                "startDate='" + startDate + '\'' +
+                ", endDate='" + endDate + '\'' +
                 ", titleOfEvent='" + titleOfEvent + '\'' +
                 ", cityOfEvent='" + cityOfEvent + '\'' +
                 '}';

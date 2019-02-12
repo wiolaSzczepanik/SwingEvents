@@ -1,13 +1,30 @@
 [
     {
-        "date":"01.01.01",
-        "titleOfEvent":"Test Name",
-        "cityOfEvent":"Test City"
+        "startDate":"2019-02-15",
+        "endDate":"2019-02-17",
+        "titleOfEvent":"Lindy Invasion VI: Second impact",
+        "cityOfEvent":"Kraków",
+        "tagList": ["boogie woogie", "lindy hop"]
     },
     {
-        "date":"02.02.02",
-        "titleOfEvent":"Test Name 2",
-        "cityOfEvent":"Test City 2"
+        "startDate":"2019-03-01",
+        "endDate":"2019-03-03",
+        "titleOfEvent":"Trochę Retro, Trochę Folk",
+        "cityOfEvent":"Kraków",
+        "tagList": ["folk"]
+    },
+    {
+        "startDate":"2019-03-13",
+        "endDate":"2019-03-17",
+        "titleOfEvent":"Boogie Snow",
+        "cityOfEvent":"Wisła",
+        "tagList": ["boogie woogie"]
+    },
+    {
+        "startDate":"2019-04-05",
+        "endDate":"2019-04-07",
+        "titleOfEvent":"VarCity Bal",
+        "cityOfEvent":"Warszawa",
+        "tagList": ["balboa"]
     }
-
 ]
