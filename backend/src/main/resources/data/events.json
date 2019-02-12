@@ -21,10 +21,66 @@
         "tagList": ["boogie woogie"]
     },
     {
+        "startDate":"2019-03-30",
+        "endDate":"2019-03-30",
+        "titleOfEvent":"Warsztaty Boogie z Grześkiem i Marceliną + impreza w JLT",
+        "cityOfEvent":"Kraków",
+        "tagList": ["boogie woogie"]
+    },
+    {
         "startDate":"2019-04-05",
         "endDate":"2019-04-07",
         "titleOfEvent":"VarCity Bal",
         "cityOfEvent":"Warszawa",
         "tagList": ["balboa"]
+    },
+    {
+        "startDate":"2019-05-02",
+        "endDate":"2019-05-05",
+        "titleOfEvent":"Seaside Swing Affair",
+        "cityOfEvent":"Gdańsk",
+        "tagList": ["lindy hop"]
+    },
+    {
+        "startDate":"2019-05-09",
+        "endDate":"2019-05-12",
+        "titleOfEvent":"Warsaw Collegiate Shag Festival",
+        "cityOfEvent":"Warszawa",
+        "tagList": ["collegiate shag"]
+    },
+    {
+        "startDate":"2019-05-02",
+        "endDate":"2019-05-05",
+        "titleOfEvent":"Rock the Balboa",
+        "cityOfEvent":"Kraków",
+        "tagList": ["balboa"]
+    },
+    {
+        "startDate":"2019-07-24",
+        "endDate":"2019-07-28",
+        "titleOfEvent":"Polish Boogie Festival / Dance Camp",
+        "cityOfEvent":"Człuchów",
+        "tagList": ["boogie woogie"]
+    },
+    {
+        "startDate":"2019-09-19",
+        "endDate":"2019-09-22",
+        "titleOfEvent":"Krak The Shag, Hola Balboa",
+        "cityOfEvent":"Kraków",
+        "tagList": ["collegiate shag", "balboa"]
+    },
+    {
+        "startDate":"2019-10",
+        "endDate":"2019-10",
+        "titleOfEvent":"GoAt Exchange",
+        "cityOfEvent":"Poznań",
+        "tagList": ["lindy hop"]
+    },
+    {
+        "startDate":"2019-11-20",
+        "endDate":"2019-11-24",
+        "titleOfEvent":"Dragon Swing",
+        "cityOfEvent":"Kraków",
+        "tagList": ["lindy hop"]
     }
 ]
