@@ -25,8 +25,8 @@
     "superagent-promise": "^1.1.0"
   },
   "scripts": {
-    "start": "cross-env PORT=4100 react-scripts start",
-    "build": "react-scripts build",
+    "start": "cross-env PORT=4100 REACT_APP_BACKEND=http://localhost:8080 react-scripts start",
+    "build": "REACT_APP_BACKEND=/api react-scripts build",
     "test": "cross-env PORT=4100 react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   }

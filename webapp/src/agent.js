@@ -26,7 +26,8 @@ const requests = {
     superagent.post(`${API_ROOT}${url}`, body).use(tokenPlugin).then(responseBody)
 };
 
-const API_ROOT_2 = 'http://localhost:8080';
+let API_ROOT_2 = process.env.REACT_APP_BACKEND || '/apisss';
+//'http://localhost:8080'
 const requests2 = {
   del: url =>
     superagent.del(`${API_ROOT_2}${url}`).use(tokenPlugin).then(responseBody),
