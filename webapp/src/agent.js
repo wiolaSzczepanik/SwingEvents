@@ -77,7 +77,7 @@ const Articles = {
       
       function toEvent(event) {
          return {"title": event.titleOfEvent,
-                "venue": event.titleOfEvent, 
+                "venue": event.cityOfEvent,
                 "start": event.startDate,
                 "end": event.endDate,
                 "tagList": event.tagList}
