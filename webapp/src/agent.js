@@ -26,6 +26,18 @@ const requests = {
     superagent.post(`${API_ROOT}${url}`, body).use(tokenPlugin).then(responseBody)
 };
 
+const API_ROOT_2 = 'http://localhost:8080';
+const requests2 = {
+  del: url =>
+    superagent.del(`${API_ROOT_2}${url}`).use(tokenPlugin).then(responseBody),
+  get: url =>
+    superagent.get(`${API_ROOT_2}${url}`).use(tokenPlugin).then(responseBody),
+  put: (url, body) =>
+    superagent.put(`${API_ROOT_2}${url}`, body).use(tokenPlugin).then(responseBody),
+  post: (url, body) =>
+    superagent.post(`${API_ROOT_2}${url}`, body).use(tokenPlugin).then(responseBody)
+}
+
 const Auth = {
   current: () =>
     requests.get('/user'),
@@ -59,7 +71,21 @@ const omitSlug = article => Object.assign({}, article, { slug: undefined })
 const Articles = {
   all: page =>
     //requests.get(`/articles?${limit(10, page)}`),
-    Promise.resolve(testArticles()),
+    // return Promise.resolve(testArticles());
+    requests2.get('/events').then(events => {
+      
+      function toEvent(event) {
+         return {"title": event.titleOfEvent,
+                "venue": event.titleOfEvent, 
+                "start": event.date, 
+                "end": event.date, 
+                "tagList": ["boogie woogie", "lindy hop"]}
+      }
+
+      const newResponse = {"articles": events.map(toEvent), "articlesCount": 3};
+      console.log('ERROR', newResponse);
+      return newResponse;
+    }),
   byAuthor: (author, page) =>
     requests.get(`/articles?author=${encode(author)}&${limit(5, page)}`),
   byTag: (tag, page) =>
