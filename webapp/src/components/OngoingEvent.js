@@ -35,7 +35,13 @@ class OngoingEvent extends React.Component {
           <div>
           {
               event.images.map(function(image, idx) {
-                  return (<div className="row"><img src={image} /><br /></div>)
+                  return (
+                    <div className="row">
+                        <div className="col-md-10 offset-md-1 col-xs-12">
+                            <img src={image} width="100%" /><br />
+                        </div>
+                    </div>
+                    )
               })
           }
         </div>
