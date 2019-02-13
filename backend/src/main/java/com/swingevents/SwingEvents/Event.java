@@ -1,7 +1,5 @@
 package com.swingevents.SwingEvents;
 
-import java.time.ZonedDateTime;
-
 public class Event {
 
     private String startDate;
