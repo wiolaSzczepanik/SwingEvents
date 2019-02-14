@@ -1,17 +1,21 @@
 package com.swingevents.SwingEvents;
 
+import org.json.simple.JSONArray;
+
 public class Event {
 
     private String startDate;
     private String endDate;
     private String titleOfEvent;
     private String cityOfEvent;
+    private String[] tags;
 
-    public Event(String startDate, String endDate, String titleOfEvent, String cityOfEvent) {
+    public Event(String startDate, String endDate, String titleOfEvent, String cityOfEvent, String[] tags) {
         this.startDate = startDate;
         this.endDate = endDate;
         this.titleOfEvent = titleOfEvent;
         this.cityOfEvent = cityOfEvent;
+        this.tags = tags;
     }
 
     public String getStartDate() {
@@ -46,6 +50,14 @@ public class Event {
         this.cityOfEvent = cityOfEvent;
     }
 
+    public String[] getTags() {
+        return tags;
+    }
+
+    public void setTags(String[] tags) {
+        this.tags = tags;
+    }
+
     @Override
     public String toString() {
         return "Event{" +
@@ -53,6 +65,8 @@ public class Event {
                 ", endDate='" + endDate + '\'' +
                 ", titleOfEvent='" + titleOfEvent + '\'' +
                 ", cityOfEvent='" + cityOfEvent + '\'' +
+                ", tags='" + tags + '\'' +
+
                 '}';
     }
 }
