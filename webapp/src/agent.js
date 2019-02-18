@@ -80,6 +80,8 @@ const Articles = {
                 "venue": event.cityOfEvent,
                 "start": event.startDate,
                 "end": event.endDate,
+                "image": event.image,
+                "facebookLink": event.facebookLink,
                 "tagList": event.tagList}
       }
 

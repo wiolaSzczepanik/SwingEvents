@@ -4,6 +4,8 @@
         "endDate":"2019-02-17",
         "titleOfEvent":"Lindy Invasion VI: Second impact",
         "cityOfEvent":"Kraków",
+        "facebookLink": "https://www.facebook.com/events/576156702808128/",
+        "image": "https://scontent-waw1-1.xx.fbcdn.net/v/t1.0-9/49617510_1982642065165300_6661638784565641216_n.jpg?_nc_cat=111&_nc_ht=scontent-waw1-1.xx&oh=1e871cef424ffd355a18912d6a21a315&oe=5D26DC12",
         "tagList": ["boogie woogie", "lindy hop"]
     },
     {
@@ -11,6 +13,8 @@
         "endDate":"2019-03-03",
         "titleOfEvent":"Trochę Retro, Trochę Folk",
         "cityOfEvent":"Kraków",
+        "facebookLink": "https://www.facebook.com/events/560629261081528/",
+        "image": "https://scontent-waw1-1.xx.fbcdn.net/v/t1.0-9/50307065_610664066042467_5992242365975232512_o.jpg?_nc_cat=102&_nc_ht=scontent-waw1-1.xx&oh=6bc1b142cef02a8a682b223bbc0ee7f9&oe=5CF61E93",
         "tagList": ["folk"]
     },
     {
@@ -18,6 +22,8 @@
         "endDate":"2019-03-17",
         "titleOfEvent":"Boogie Snow",
         "cityOfEvent":"Wisła",
+        "facebookLink": "https://www.facebook.com/events/308755569869161/",
+        "image": "https://scontent-waw1-1.xx.fbcdn.net/v/t1.0-9/38703236_2284797481536859_5985790363023966208_n.jpg?_nc_cat=101&_nc_ht=scontent-waw1-1.xx&oh=919ac33b391442f31336dc10d8f1184d&oe=5CE0181B",
         "tagList": ["boogie woogie"]
     },
     {
@@ -30,15 +36,19 @@
     {
         "startDate":"2019-04-05",
         "endDate":"2019-04-07",
-        "titleOfEvent":"VarCity Bal",
+        "titleOfEvent":"10 lat tańca Grzegorza i Agnieszki",
         "cityOfEvent":"Warszawa",
-        "tagList": ["balboa"]
+        "facebookLink": "https://www.facebook.com/events/400334110537438/",
+        "image": "https://scontent-waw1-1.xx.fbcdn.net/v/t1.0-9/51276009_950176008512699_5891349740196462592_n.jpg?_nc_cat=109&_nc_ht=scontent-waw1-1.xx&oh=593b225323c3cc6952b27511566bebbf&oe=5D27AAE0",
+        "tagList": ["boogie woogie", "lindy hop"]
     },
     {
         "startDate":"2019-05-02",
         "endDate":"2019-05-05",
         "titleOfEvent":"Seaside Swing Affair",
         "cityOfEvent":"Gdańsk",
+        "facebookLink": "https://www.facebook.com/events/352822628787698/permalink/353079305428697/",
+        "image": "https://scontent-waw1-1.xx.fbcdn.net/v/t1.0-9/42796003_2033182570103476_9080407436157779968_n.jpg?_nc_cat=106&_nc_ht=scontent-waw1-1.xx&oh=acea2808968b03da8b27f334b70ca1fe&oe=5CE312DD",
         "tagList": ["lindy hop"]
     },
     {
@@ -46,13 +56,17 @@
         "endDate":"2019-05-12",
         "titleOfEvent":"Warsaw Collegiate Shag Festival",
         "cityOfEvent":"Warszawa",
+        "facebookLink": "https://www.facebook.com/events/189528031864153/",
+        "image": "https://scontent-waw1-1.xx.fbcdn.net/v/t1.0-9/51157336_761474770895258_1167665994190028800_n.jpg?_nc_cat=108&_nc_ht=scontent-waw1-1.xx&oh=8997cbfba5e7b061f652d9972b232224&oe=5D261633",
         "tagList": ["collegiate shag"]
     },
     {
-        "startDate":"2019-05-02",
-        "endDate":"2019-05-05",
+        "startDate":"2019-05-24",
+        "endDate":"2019-05-26",
         "titleOfEvent":"Rock the Balboa",
         "cityOfEvent":"Kraków",
+        "facebookLink": "https://www.facebook.com/events/333268693923232/",
+        "image": "https://scontent-waw1-1.xx.fbcdn.net/v/t1.0-9/48358303_1944817882281052_1613840674505883648_n.jpg?_nc_cat=108&_nc_ht=scontent-waw1-1.xx&oh=dcbcdd03083c614169303a40fdda98c3&oe=5CF883EF",
         "tagList": ["balboa"]
     },
     {
@@ -60,6 +74,8 @@
         "endDate":"2019-07-28",
         "titleOfEvent":"Polish Boogie Festival / Dance Camp",
         "cityOfEvent":"Człuchów",
+        "facebookLink": "https://www.facebook.com/events/1110500042432554/",
+        "image": "https://scontent-waw1-1.xx.fbcdn.net/v/t1.0-9/38462821_2280019618681312_5213088543466848256_n.jpg?_nc_cat=101&_nc_ht=scontent-waw1-1.xx&oh=f283a7953ebcd33967763cca2ab4cafd&oe=5CE0F738",
         "tagList": ["boogie woogie"]
     },
     {
@@ -67,6 +83,8 @@
         "endDate":"2019-09-22",
         "titleOfEvent":"Krak The Shag, Hola Balboa",
         "cityOfEvent":"Kraków",
+        "facebookLink": "https://www.facebook.com/events/2141970232790590/",
+        "image": "https://scontent-waw1-1.xx.fbcdn.net/v/t1.0-9/43014264_1906678939426302_1739296097991393280_n.jpg?_nc_cat=105&_nc_ht=scontent-waw1-1.xx&oh=c9899ec4ee898cfa3b79ebb94b313d94&oe=5CEAF248",
         "tagList": ["collegiate shag", "balboa"]
     },
     {
@@ -74,6 +92,7 @@
         "endDate":"2019-10",
         "titleOfEvent":"GoAt Exchange",
         "cityOfEvent":"Poznań",
+        "image": "https://scontent-waw1-1.xx.fbcdn.net/v/t1.0-9/17861982_415450488832895_1723840868967528016_n.png?_nc_cat=111&_nc_ht=scontent-waw1-1.xx&oh=9660fdcf98ba00f8ca86d6d584df8d6c&oe=5CF2E6E5",
         "tagList": ["lindy hop"]
     },
     {
@@ -81,6 +100,8 @@
         "endDate":"2019-11-24",
         "titleOfEvent":"Dragon Swing",
         "cityOfEvent":"Kraków",
+        "facebookLink": "https://www.facebook.com/events/585659191887324/",
+        "image": "https://scontent-waw1-1.xx.fbcdn.net/v/t1.0-9/47475664_2208751262520034_6835899020947226624_n.jpg?_nc_cat=100&_nc_ht=scontent-waw1-1.xx&oh=97df8cf737490aab18b2ba2645be019a&oe=5CF0E07A",
         "tagList": ["lindy hop"]
     }
 ]
