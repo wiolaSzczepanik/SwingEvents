@@ -3,10 +3,14 @@ package com.swingevents.SwingEvents;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
+import org.springframework.util.ResourceUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.io.*;
+import java.nio.file.Files;
 import java.util.*;
 
 
@@ -38,10 +42,12 @@ public class EventController {
     }
 
     private static List<Event> readJSON() throws Exception {
+        File file = ResourceUtils.getFile("classpath:data/events.json");
+        String content = new String(Files.readAllBytes(file.toPath()));
+
         List<Event>events = new ArrayList<>();
         JSONParser parser = new JSONParser();
-        JSONArray jsonArray = (JSONArray) parser.parse(new FileReader(
-                "/home/szczepanik/Documents/SwingEvents/backend/src/main/resources/data/events.json"));
+        JSONArray jsonArray = (JSONArray) parser.parse(content);
 
         for (Object o : jsonArray) {
             JSONObject event = (JSONObject) o;
