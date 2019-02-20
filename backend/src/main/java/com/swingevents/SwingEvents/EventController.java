@@ -1,15 +1,18 @@
 package com.swingevents.SwingEvents;
 
+import org.apache.commons.io.IOUtils;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
-import org.springframework.util.ResourceUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.io.*;
-import java.nio.file.Files;
-import java.util.*;
+import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 
 @RestController
@@ -38,8 +41,10 @@ public class EventController {
     }
 
     private static List<Event> readJSON() throws Exception {
-        File file = ResourceUtils.getFile("classpath:data/events.json");
-        String content = new String(Files.readAllBytes(file.toPath()));
+        ClassLoader classloader = Thread.currentThread().getContextClassLoader();
+        InputStream inputStream = classloader.getResourceAsStream("data/events.json");
+        String content = IOUtils.toString(inputStream, StandardCharsets.UTF_8);
+
 
         List<Event>events = new ArrayList<>();
         JSONParser parser = new JSONParser();
