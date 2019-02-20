@@ -52,6 +52,8 @@ public class EventController {
             String endDate = (String) event.get("endDate");
             String titleOfEvent = (String) event.get("titleOfEvent");
             String cityOfEvent = (String) event.get("cityOfEvent");
+            String facebookLink = (String) event.get("facebookLink");
+            String image = (String) event.get("image");
 
             List<String> tags = new ArrayList<>();
 
@@ -61,7 +63,7 @@ public class EventController {
                 tags.add(tag.toString());
             }
 
-            events.add(new Event(startDate, endDate, titleOfEvent, cityOfEvent, tags));
+            events.add(new Event(startDate, endDate, titleOfEvent, cityOfEvent, facebookLink, image, tags));
 
         }
         return events;
