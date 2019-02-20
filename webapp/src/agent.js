@@ -51,10 +51,10 @@ const Auth = {
 };
 
 const Tags = {
-  // getAll: () => requests.get('/tags')
-  getAll: () => Promise.resolve(
-      {"tags":["lindy hop", "balboa", "collegiate shag", "blues", "boogie woogie", "solo"]}
-  )
+   getAll: () => requests2.get('/events/tags').then(tags =>{ // tags -> http response
+        const tagObject = {"tags":tags}
+        return tagObject;
+   })
 };
 
 function testArticles() {
@@ -82,7 +82,7 @@ const Articles = {
                 "end": event.endDate,
                 "image": event.image,
                 "facebookLink": event.facebookLink,
-                "tagList": event.tagList}
+                "tagList": event.tags}
       }
 
       const newResponse = {"articles": events.map(toEvent), "articlesCount": 3};
