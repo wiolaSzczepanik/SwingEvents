@@ -1,6 +1,6 @@
 package com.swingevents.SwingEvents;
 
-import org.json.simple.JSONArray;
+import java.util.List;
 
 public class Event {
 
@@ -8,9 +8,9 @@ public class Event {
     private String endDate;
     private String titleOfEvent;
     private String cityOfEvent;
-    private String[] tags;
+    private List<String> tags;
 
-    public Event(String startDate, String endDate, String titleOfEvent, String cityOfEvent, String[] tags) {
+     Event(String startDate, String endDate, String titleOfEvent, String cityOfEvent, List<String> tags) {
         this.startDate = startDate;
         this.endDate = endDate;
         this.titleOfEvent = titleOfEvent;
@@ -50,11 +50,11 @@ public class Event {
         this.cityOfEvent = cityOfEvent;
     }
 
-    public String[] getTags() {
+    public List<String> getTags() {
         return tags;
     }
 
-    public void setTags(String[] tags) {
+    public void setTags(List<String> tags) {
         this.tags = tags;
     }
 

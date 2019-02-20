@@ -3,8 +3,6 @@ package com.swingevents.SwingEvents;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
-import org.springframework.core.io.ClassPathResource;
-import org.springframework.core.io.Resource;
 import org.springframework.util.ResourceUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -30,10 +28,8 @@ public class EventController {
         try {
             List<Event> events = readJSON();
             for (Event event : events) {
-                String[] eventTags = event.getTags();
-                for (String tag:eventTags) {
-                    tags.add(tag);
-                }
+                List<String> eventTags = event.getTags();
+                tags.addAll(eventTags);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -60,14 +56,12 @@ public class EventController {
             List<String> tags = new ArrayList<>();
 
             JSONArray arrays = (JSONArray) event.get("tagList");
-            for (Object object : arrays) {
-                tags.add(object.toString());
+
+            for (Object tag : arrays) {
+                tags.add(tag.toString());
             }
 
-            String[] tagsArray = new String[tags.size()];
-            tagsArray = tags.toArray(tagsArray);
-
-            events.add(new Event(startDate, endDate, titleOfEvent, cityOfEvent, tagsArray));
+            events.add(new Event(startDate, endDate, titleOfEvent, cityOfEvent, tags));
 
         }
         return events;
