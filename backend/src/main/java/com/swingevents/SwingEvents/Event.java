@@ -8,13 +8,18 @@ public class Event {
     private String endDate;
     private String titleOfEvent;
     private String cityOfEvent;
+    private String facebookLink;
+    private String image;
     private List<String> tags;
 
-     Event(String startDate, String endDate, String titleOfEvent, String cityOfEvent, List<String> tags) {
+     Event(String startDate, String endDate, String titleOfEvent, String cityOfEvent, String facebookLink,
+           String image, List<String> tags) {
         this.startDate = startDate;
         this.endDate = endDate;
         this.titleOfEvent = titleOfEvent;
         this.cityOfEvent = cityOfEvent;
+        this.facebookLink = facebookLink;
+        this.image = image;
         this.tags = tags;
     }
 
@@ -50,6 +55,22 @@ public class Event {
         this.cityOfEvent = cityOfEvent;
     }
 
+    public String getFacebookLink() {
+        return facebookLink;
+    }
+
+    public void setFacebookLink(String facebookLink) {
+        this.facebookLink = facebookLink;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
     public List<String> getTags() {
         return tags;
     }
@@ -65,8 +86,9 @@ public class Event {
                 ", endDate='" + endDate + '\'' +
                 ", titleOfEvent='" + titleOfEvent + '\'' +
                 ", cityOfEvent='" + cityOfEvent + '\'' +
+                ", facebookLink='" + facebookLink + '\'' +
+                ", image='" + image + '\'' +
                 ", tags='" + tags + '\'' +
-
                 '}';
     }
 }
