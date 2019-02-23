@@ -85,21 +85,7 @@ function convertEvents(events) {
 
 }
 
-const limit = (count, p) => `limit=${count}&offsevents => {
-        function toEvent(event) {
-            return {"title": event.titleOfEvent,
-                "venue": event.cityOfEvent,
-                "start": event.startDate,
-                "end": event.endDate,
-                "image": event.image,
-                "facebookLink": event.facebookLink,
-                "tagList": event.tags}
-        }
-
-        const newResponse = {"articles": events.map(toEvent), "articlesCount": 3};
-        console.log('ERROR', newResponse);
-        return newResponse;
-    }et=${p ? p * count : 0}`;
+const limit = (count, p) => `limit=${count}&offset=${p ? p * count : 0}`;
 const omitSlug = article => Object.assign({}, article, { slug: undefined })
 const Articles = {
   all: page =>
