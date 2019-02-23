@@ -6,5 +6,5 @@ SwingEvents.iml
 out/
 
 .vscode/
-
+prod-nginx/app/
 *.tar
