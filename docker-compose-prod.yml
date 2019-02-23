@@ -1,12 +1,15 @@
 version: '2'
 services:
   web:
-    image: swingevents_web
+    build: prod-nginx
     environment:
      - APP_API_GATEWAY=http://backend:8080
      - APP_API_PLACEHOLDER=/api
     ports:
      - "80:80"
      - "443:443"
+    volumes: 
+     - /etc/letsencrypt:/etc/letsencrypt
+     - /var/www/_letsencrypt:/var/www/_letsencrypt
   backend:
     image: swingevents_backend
