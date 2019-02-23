@@ -7,6 +7,7 @@ import org.json.simple.parser.JSONParser;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.ws.rs.QueryParam;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
@@ -19,9 +20,21 @@ import java.util.Set;
 public class EventController {
 
     @RequestMapping("/events")
-    public List<Event> seeAllEvents() throws Exception {
+    public List<Event> seeAllEvents(@QueryParam("tag") String tag) throws Exception {
         List<Event> allEvents = readJSON();
-        return allEvents;
+
+        if(tag==null){
+            return allEvents;
+        }
+
+        List<Event>selectedEvents =  new ArrayList<>();
+
+        for (Event event : allEvents) {
+            if(event.getTags().contains(tag)){
+                selectedEvents.add(event);
+            }
+        }
+        return selectedEvents;
     }
 
 
