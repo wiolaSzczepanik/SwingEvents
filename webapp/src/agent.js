@@ -92,7 +92,21 @@ const Articles = {
   byAuthor: (author, page) =>
     requests.get(`/articles?author=${encode(author)}&${limit(5, page)}`),
   byTag: (tag, page) =>
-    requests.get(`/articles?tag=${encode(tag)}&${limit(10, page)}`),
+    requests2.get(`/events?tag=${tag}`).then(events => {
+        function toEvent(event) {
+            return {"title": event.titleOfEvent,
+                "venue": event.cityOfEvent,
+                "start": event.startDate,
+                "end": event.endDate,
+                "image": event.image,
+                "facebookLink": event.facebookLink,
+                "tagList": event.tags}
+        }
+
+        const newResponse = {"articles": events.map(toEvent), "articlesCount": 3};
+        console.log('ERROR', newResponse);
+        return newResponse;
+    }),
   del: slug =>
     requests.del(`/articles/${slug}`),
   favorite: slug =>
