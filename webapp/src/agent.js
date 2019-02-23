@@ -67,32 +67,25 @@ function testArticles() {
           ], "articlesCount":1}
 }
 
-const limit = (count, p) => `limit=${count}&offset=${p ? p * count : 0}`;
-const omitSlug = article => Object.assign({}, article, { slug: undefined })
-const Articles = {
-  all: page =>
-    //requests.get(`/articles?${limit(10, page)}`),
-    // return Promise.resolve(testArticles());
-    requests2.get('/events').then(events => {
-      
-      function toEvent(event) {
-         return {"title": event.titleOfEvent,
-                "venue": event.cityOfEvent,
-                "start": event.startDate,
-                "end": event.endDate,
-                "image": event.image,
-                "facebookLink": event.facebookLink,
-                "tagList": event.tags}
-      }
+function convertEvents(events) {
 
-      const newResponse = {"articles": events.map(toEvent), "articlesCount": 3};
-      console.log('ERROR', newResponse);
-      return newResponse;
-    }),
-  byAuthor: (author, page) =>
-    requests.get(`/articles?author=${encode(author)}&${limit(5, page)}`),
-  byTag: (tag, page) =>
-    requests2.get(`/events?tag=${tag}`).then(events => {
+    function toEvent(event) {
+        return {"title": event.titleOfEvent,
+            "venue": event.cityOfEvent,
+            "start": event.startDate,
+            "end": event.endDate,
+            "image": event.image,
+            "facebookLink": event.facebookLink,
+            "tagList": event.tags}
+    }
+
+    const newResponse = {"articles": events.map(toEvent), "articlesCount": 3};
+    console.log('ERROR', newResponse);
+    return newResponse;
+
+}
+
+const limit = (count, p) => `limit=${count}&offsevents => {
         function toEvent(event) {
             return {"title": event.titleOfEvent,
                 "venue": event.cityOfEvent,
@@ -106,7 +99,17 @@ const Articles = {
         const newResponse = {"articles": events.map(toEvent), "articlesCount": 3};
         console.log('ERROR', newResponse);
         return newResponse;
-    }),
+    }et=${p ? p * count : 0}`;
+const omitSlug = article => Object.assign({}, article, { slug: undefined })
+const Articles = {
+  all: page =>
+    //requests.get(`/articles?${limit(10, page)}`),
+    // return Promise.resolve(testArticles());
+    requests2.get('/events').then(convertEvents),
+  byAuthor: (author, page) =>
+    requests.get(`/articles?author=${encode(author)}&${limit(5, page)}`),
+  byTag: (tag, page) =>
+    requests2.get(`/events?tag=${tag}`).then(convertEvents),
   del: slug =>
     requests.del(`/articles/${slug}`),
   favorite: slug =>
