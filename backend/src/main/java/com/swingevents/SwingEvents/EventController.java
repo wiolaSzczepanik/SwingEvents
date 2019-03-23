@@ -21,6 +21,9 @@ public class EventController {
 
     @RequestMapping("/events")
     public List<Event> seeAllEvents(@QueryParam("tag") String tag) throws Exception {
+
+        SwingEventsApplication.LOGGER.info("[SPRING]--SEE ALL EVENTS");
+
         List<Event> allEvents = readJSON();
 
         if(tag==null){
