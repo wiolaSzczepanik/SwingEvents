@@ -12,9 +12,6 @@ const DateRange = props => {
     start.locale(language);
     end.locale(language);
 
-    console.log("Language: " + language);
-    moment.locale(language);
-
     if(start.isSame(end)){
         return (
             <p style={{float: 'left'}}>{start.format('DD')} {start.format('MMM YYYY')}
