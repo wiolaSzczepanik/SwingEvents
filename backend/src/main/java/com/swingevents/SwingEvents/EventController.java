@@ -1,5 +1,6 @@
 package com.swingevents.SwingEvents;
 
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.IOUtils;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -17,10 +18,14 @@ import java.util.Set;
 
 
 @RestController
+@Slf4j
 public class EventController {
 
     @RequestMapping("/events")
     public List<Event> seeAllEvents(@QueryParam("tag") String tag) throws Exception {
+
+        log.info("[SPRING]--SEE ALL EVENTS");
+
         List<Event> allEvents = readJSON();
 
         if(tag==null){
