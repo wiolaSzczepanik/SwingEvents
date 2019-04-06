@@ -1,9 +1,16 @@
 import React from "react";
 import moment from "moment";
+import 'moment/min/locales';
 
 const DateRange = props => {
+    const userLang = navigator.language || navigator.userLanguage;
+    const language = userLang.split("-", 1);
+
     const start = moment(new Date(props.start));
     const end = moment(new Date(props.end));
+
+    start.locale(language);
+    end.locale(language);
 
     if(start.isSame(end)){
         return (
