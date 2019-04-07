@@ -22,7 +22,7 @@ class ForegoneEvent extends React.Component {
         ]
     }
     return (
-      <div className="ongoingevent-page">
+      <div className="foregone-page">
         <div className="container page">
           <div className="row">
 

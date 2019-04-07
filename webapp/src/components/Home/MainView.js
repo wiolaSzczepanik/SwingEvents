@@ -43,14 +43,14 @@ const GlobalFeedTab = props => {
    return (
     <ul className="nav-item">
 
-           <li className={ props.tab === 'all' ? 'nav-link active' : 'nav-link' }>
-             <Link to="/" className="nav-link">
+           <li className="nav-item">
+             <Link to="/" className={ props.tab === 'all' ? 'nav-link active' : 'nav-link' }>
                 Nadchodzące wydarzenia
              </Link>
            </li>
 
-           <li className={ props.tab === 'all' ? 'nav-link active' : 'nav-link' }>
-             <Link to="/foregone" className="nav-link">
+           <li className="nav-item">
+             <Link to="/foregone" className={ props.tab === 'all' ? 'nav-link active' : 'nav-link' }>
                Minione wydarzenia
              </Link>
            </li>
