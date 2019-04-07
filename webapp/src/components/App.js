@@ -9,6 +9,7 @@ import Editor from '../components/Editor';
 import Home from '../components/Home';
 import Login from '../components/Login';
 import OngoingEvent from '../components/OngoingEvent';
+import ForegoneEvent from '../components/ForegoneEvent';
 import Profile from '../components/Profile';
 import ProfileFavorites from '../components/ProfileFavorites';
 import Register from '../components/Register';
@@ -59,6 +60,7 @@ class App extends React.Component {
             <Switch>
             <Route exact path="/" component={Home}/>
             <Route path="/ongoing" component={OngoingEvent} />
+            <Route path="/foregone" component={ForegoneEvent} />
             <Route path="/login" component={Login} />
             <Route path="/register" component={Register} />
             <Route path="/editor/:slug" component={Editor} />

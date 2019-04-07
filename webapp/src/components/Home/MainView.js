@@ -4,6 +4,9 @@ import agent from '../../agent';
 import { connect } from 'react-redux';
 import { CHANGE_TAB } from '../../constants/actionTypes';
 import OngoingEvent from '../OngoingEvent'
+import ForegoneEvent from '../ForegoneEvent'
+
+import {Link} from 'react-router-dom';
 
 const YourFeedTab = props => {
   if (props.token) {
@@ -26,19 +29,47 @@ const YourFeedTab = props => {
 };
 
 const GlobalFeedTab = props => {
+
   const clickHandler = ev => {
     ev.preventDefault();
     props.onTabClick('all', agent.Articles.all, agent.Articles.all());
   };
-  return (
-    <li className="nav-item">
-      <a
-        href=""
-        className={ props.tab === 'all' ? 'nav-link active' : 'nav-link' }
-        onClick={clickHandler}>
-        Nadchodzące wydarzenia
-      </a>
-    </li>
+    const clickHandlerPastEvent = ev => {
+      ev.preventDefault();
+      props.onTabClick('all', agent.Articles.all, agent.Articles.all());
+    };
+
+
+   return (
+    <ul className="nav-item">
+
+           <li className={ props.tab === 'all' ? 'nav-link active' : 'nav-link' }>
+             <Link to="/" className="nav-link">
+                Nadchodzące wydarzenia
+             </Link>
+           </li>
+
+           <li className={ props.tab === 'all' ? 'nav-link active' : 'nav-link' }>
+             <Link to="/foregone" className="nav-link">
+               Minione wydarzenia
+             </Link>
+           </li>
+
+         </ul>
+//    <li className="nav-item">
+//      <a
+//        href=""
+//        className={ props.tab === 'all' ? 'nav-link active' : 'nav-link' }
+//        onClick={clickHandler}>
+//        Nadchodzące wydarzenia
+//      </a>
+//      <a
+//        href="/foregone"
+//        className={ props.tab === 'all' ? 'nav-link active' : 'nav-link' }
+//        onClick={clickHandler}>
+//        Minione wydarzenia
+//      </a>
+//    </li>
   );
 };
 
