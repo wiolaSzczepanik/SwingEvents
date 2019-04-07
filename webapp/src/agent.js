@@ -92,6 +92,8 @@ const Articles = {
     //requests.get(`/articles?${limit(10, page)}`),
     // return Promise.resolve(testArticles());
     requests2.get('/events').then(convertEvents),
+  past: page =>
+    requests2.get('/events/foregone').then(convertEvents),
   byAuthor: (author, page) =>
     requests.get(`/articles?author=${encode(author)}&${limit(5, page)}`),
   byTag: (tag, page) =>

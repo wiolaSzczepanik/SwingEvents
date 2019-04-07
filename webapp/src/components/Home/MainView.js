@@ -7,6 +7,7 @@ import OngoingEvent from '../OngoingEvent'
 import ForegoneEvent from '../ForegoneEvent'
 
 import {Link} from 'react-router-dom';
+import { withRouter } from "react-router-dom";
 
 const YourFeedTab = props => {
   if (props.token) {
@@ -32,46 +33,42 @@ const GlobalFeedTab = props => {
 
   const clickHandler = ev => {
     ev.preventDefault();
+    props.history.push("/");
     props.onTabClick('all', agent.Articles.all, agent.Articles.all());
   };
-    const clickHandlerPastEvent = ev => {
-      ev.preventDefault();
-      props.onTabClick('all', agent.Articles.all, agent.Articles.all());
-    };
-
 
    return (
-    <ul className="nav-item">
-
-           <li className="nav-item">
-             <Link to="/" className={ props.tab === 'all' ? 'nav-link active' : 'nav-link' }>
-                Nadchodzące wydarzenia
-             </Link>
-           </li>
-
-           <li className="nav-item">
-             <Link to="/foregone" className={ props.tab === 'all' ? 'nav-link active' : 'nav-link' }>
-               Minione wydarzenia
-             </Link>
-           </li>
-
-         </ul>
-//    <li className="nav-item">
-//      <a
-//        href=""
-//        className={ props.tab === 'all' ? 'nav-link active' : 'nav-link' }
-//        onClick={clickHandler}>
-//        Nadchodzące wydarzenia
-//      </a>
-//      <a
-//        href="/foregone"
-//        className={ props.tab === 'all' ? 'nav-link active' : 'nav-link' }
-//        onClick={clickHandler}>
-//        Minione wydarzenia
-//      </a>
-//    </li>
+    <li className="nav-item">
+      <a
+        href=""
+        className={ props.tab === 'all' ? 'nav-link active' : 'nav-link' }
+        onClick={clickHandler}>
+        Nadchodzące wydarzenia
+      </a>
+    </li>
   );
 };
+
+const PastFeedTab = props => {
+
+  const clickHandler = ev => {
+    ev.preventDefault();
+    props.history.push("/past");
+    props.onTabClick('past', agent.Articles.past, agent.Articles.past());
+  };
+
+   return (
+    <li className="nav-item">
+      <a
+        href=""
+        className={ props.tab === 'past' ? 'nav-link active' : 'nav-link' }
+        onClick={clickHandler}>
+        Minione wydarzenia
+      </a>
+    </li>
+  );
+};
+
 
 const TagFilterTab = props => {
   if (!props.tag) {
@@ -108,7 +105,8 @@ const MainView = props => {
             tab={props.tab}
             onTabClick={props.onTabClick} />
 
-          <GlobalFeedTab tab={props.tab} onTabClick={props.onTabClick} />
+          <GlobalFeedTab tab={props.tab} onTabClick={props.onTabClick} history={props.history} />
+          <PastFeedTab tab={props.tab} onTabClick={props.onTabClick} history={props.history} />
 
           <TagFilterTab tag={props.tag} />
 
@@ -125,4 +123,4 @@ const MainView = props => {
   );
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(MainView);
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(MainView));
