@@ -4,6 +4,10 @@ import agent from '../../agent';
 import { connect } from 'react-redux';
 import { CHANGE_TAB } from '../../constants/actionTypes';
 import OngoingEvent from '../OngoingEvent'
+import ForegoneEvent from '../ForegoneEvent'
+
+import {Link} from 'react-router-dom';
+import { withRouter } from "react-router-dom";
 
 const YourFeedTab = props => {
   if (props.token) {
@@ -26,11 +30,14 @@ const YourFeedTab = props => {
 };
 
 const GlobalFeedTab = props => {
+
   const clickHandler = ev => {
     ev.preventDefault();
+    props.history.push("/");
     props.onTabClick('all', agent.Articles.all, agent.Articles.all());
   };
-  return (
+
+   return (
     <li className="nav-item">
       <a
         href=""
@@ -41,6 +48,27 @@ const GlobalFeedTab = props => {
     </li>
   );
 };
+
+const PastFeedTab = props => {
+
+  const clickHandler = ev => {
+    ev.preventDefault();
+    props.history.push("/past");
+    props.onTabClick('past', agent.Articles.past, agent.Articles.past());
+  };
+
+   return (
+    <li className="nav-item">
+      <a
+        href=""
+        className={ props.tab === 'past' ? 'nav-link active' : 'nav-link' }
+        onClick={clickHandler}>
+        Minione wydarzenia
+      </a>
+    </li>
+  );
+};
+
 
 const TagFilterTab = props => {
   if (!props.tag) {
@@ -77,7 +105,8 @@ const MainView = props => {
             tab={props.tab}
             onTabClick={props.onTabClick} />
 
-          <GlobalFeedTab tab={props.tab} onTabClick={props.onTabClick} />
+          <GlobalFeedTab tab={props.tab} onTabClick={props.onTabClick} history={props.history} />
+          <PastFeedTab tab={props.tab} onTabClick={props.onTabClick} history={props.history} />
 
           <TagFilterTab tag={props.tag} />
 
@@ -94,4 +123,4 @@ const MainView = props => {
   );
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(MainView);
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(MainView));

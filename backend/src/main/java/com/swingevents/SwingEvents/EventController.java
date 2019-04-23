@@ -11,10 +11,13 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.ws.rs.QueryParam;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.TemporalAccessor;
+import java.util.*;
 
 
 @RestController
@@ -56,6 +59,31 @@ public class EventController {
             e.printStackTrace();
         }
         return tags;
+    }
+
+    @RequestMapping("events/foregone")
+    public List<Event>seeAllForegoneEvents() throws Exception {
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Date todayDate = new Date();
+        System.out.println("today: " + dateFormat.format(todayDate));
+
+        List<Event> allForegoneEvents = new ArrayList<>();
+
+        try{
+            List<Event> events = readJSON();
+            for (Event event : events){
+                log.info("eventStart: " + event.getEndDate());
+                log.info("now: " + dateFormat.format(todayDate));
+                Date eventDate = new SimpleDateFormat("yyyy-MM-dd").parse(event.getEndDate());
+                if(todayDate.after(eventDate)){
+                    allForegoneEvents.add(event);
+                }
+            }
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+        return allForegoneEvents;
+
     }
 
     private static List<Event> readJSON() throws Exception {
