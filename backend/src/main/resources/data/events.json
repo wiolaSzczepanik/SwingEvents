@@ -61,6 +61,15 @@
         "tagList": ["collegiate shag"]
     },
     {
+        "startDate":"2019-05-17",
+        "endDate":"2019-05-19",
+        "titleOfEvent":"Boogie Explosion #4",
+        "cityOfEvent":"Ateny",
+        "facebookLink": "https://www.facebook.com/events/252851145587989/",
+        "image": "https://scontent-waw1-1.xx.fbcdn.net/v/t1.0-9/45898899_1997532233674866_1123335819956846592_o.jpg?_nc_cat=109&_nc_ht=scontent-waw1-1.xx&oh=e224ed55ecfb77152bee6dcef8482497&oe=5D426852",
+        "tagList": ["boogie woogie"]
+    },
+    {
         "startDate":"2019-05-24",
         "endDate":"2019-05-26",
         "titleOfEvent":"Rock the Balboa",
@@ -88,8 +97,8 @@
         "tagList": ["collegiate shag", "balboa"]
     },
     {
-        "startDate":"2019-10",
-        "endDate":"2019-10",
+        "startDate":"2019-10-10",
+        "endDate":"2019-10-13",
         "titleOfEvent":"GoAt Exchange",
         "cityOfEvent":"Poznań",
         "image": "https://scontent-waw1-1.xx.fbcdn.net/v/t1.0-9/17861982_415450488832895_1723840868967528016_n.png?_nc_cat=111&_nc_ht=scontent-waw1-1.xx&oh=9660fdcf98ba00f8ca86d6d584df8d6c&oe=5CF2E6E5",
@@ -103,5 +112,6 @@
         "facebookLink": "https://www.facebook.com/events/585659191887324/",
         "image": "https://scontent-waw1-1.xx.fbcdn.net/v/t1.0-9/47475664_2208751262520034_6835899020947226624_n.jpg?_nc_cat=100&_nc_ht=scontent-waw1-1.xx&oh=97df8cf737490aab18b2ba2645be019a&oe=5CF0E07A",
         "tagList": ["lindy hop"]
-    }
+    },
+
 ]
