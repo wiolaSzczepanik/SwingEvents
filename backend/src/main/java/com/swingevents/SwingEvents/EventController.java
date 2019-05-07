@@ -1,10 +1,12 @@
 package com.swingevents.SwingEvents;
 
+import com.swingevents.SwingEvents.db.EventsRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.IOUtils;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -18,18 +20,22 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.TemporalAccessor;
 import java.util.*;
+import java.util.stream.Collectors;
 
 
 @RestController
 @Slf4j
 public class EventController {
 
+    @Autowired
+    private EventsRepository eventsRepository;
+
     @RequestMapping("/events")
     public List<Event> seeAllEvents(@QueryParam("tag") String tag) throws Exception {
 
         log.info("[SPRING]--SEE ALL EVENTS");
 
-        List<Event> allEvents = readJSON();
+        List<Event> allEvents = eventsRepository.findAll();
 
         if(tag==null){
             return allEvents;
@@ -52,7 +58,7 @@ public class EventController {
         try {
             List<Event> events = readJSON();
             for (Event event : events) {
-                List<String> eventTags = event.getTags();
+                List<String> eventTags = Arrays.asList(event.getTags().split(","));
                 tags.addAll(eventTags);
             }
         } catch (Exception e) {
@@ -114,7 +120,7 @@ public class EventController {
                 tags.add(tag.toString());
             }
 
-            events.add(new Event(startDate, endDate, titleOfEvent, cityOfEvent, facebookLink, image, tags));
+            events.add(new Event(0, startDate, endDate, titleOfEvent, cityOfEvent, facebookLink, image, String.join(",", tags)));
 
         }
         return events;
