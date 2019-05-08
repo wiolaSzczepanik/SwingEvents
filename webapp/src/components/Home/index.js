@@ -33,7 +33,7 @@ class Home extends React.Component {
 
     const articlesPromise = tab == 'past' ?
       agent.Articles.past :
-      agent.Articles.all;
+      agent.Articles.upcoming;
 
     this.props.onLoad(tab, articlesPromise, Promise.all([agent.Tags.getAll(), articlesPromise()]));
   }

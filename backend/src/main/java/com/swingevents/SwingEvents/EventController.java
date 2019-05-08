@@ -90,7 +90,9 @@ public class EventController {
 
     private List<JsonEvent> readAllEvents() {
         return eventsRepository.findAll()
-                .stream().map(DbEvent::toJsonEvent).collect(Collectors.toList());
+                .stream().map(DbEvent::toJsonEvent)
+                .sorted(Comparator.comparing(JsonEvent::getStartDate))
+                .collect(Collectors.toList());
     }
 }
 
