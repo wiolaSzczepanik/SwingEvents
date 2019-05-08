@@ -11,5 +11,16 @@ services:
     volumes: 
      - /etc/letsencrypt:/etc/letsencrypt
      - /var/www/_letsencrypt:/var/www/_letsencrypt
+  pg-docker:
+    image: postgres
+    environment:
+      - POSTGRES_PASSWORD=docker
+    ports:
+      - "5432:5432"
+    volumes:
+      - /root/docker/volumes/postgres:/var/lib/postgresql/data 
   backend:
     image: swingevents_backend
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://pg-docker:5432/events
+
