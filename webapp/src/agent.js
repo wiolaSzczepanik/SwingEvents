@@ -1,5 +1,6 @@
 import superagentPromise from 'superagent-promise';
 import _superagent from 'superagent';
+import moment from "moment";
 
 const superagent = superagentPromise(_superagent, global.Promise);
 
@@ -85,6 +86,14 @@ function convertEvents(events) {
 
 }
 
+function isUpcoming(event) {
+    return moment(new Date(event.startDate)).isAfter(new Date())
+}
+
+function byStartDate(e1, e2) {
+    return (e1.startDate > e2.startDate) ? 1 : -1;
+}
+
 const limit = (count, p) => `limit=${count}&offset=${p ? p * count : 0}`;
 const omitSlug = article => Object.assign({}, article, { slug: undefined })
 const Articles = {
@@ -92,8 +101,10 @@ const Articles = {
     //requests.get(`/articles?${limit(10, page)}`),
     // return Promise.resolve(testArticles());
     requests2.get('/events').then(convertEvents),
+  upcoming: page =>
+    requests2.get('/events').then(events => events.filter(isUpcoming).sort(byStartDate)).then(convertEvents),
   past: page =>
-    requests2.get('/events/foregone').then(convertEvents),
+    requests2.get('/events/foregone').then(events => events.sort(byStartDate).reverse()).then(convertEvents),
   byAuthor: (author, page) =>
     requests.get(`/articles?author=${encode(author)}&${limit(5, page)}`),
   byTag: (tag, page) =>

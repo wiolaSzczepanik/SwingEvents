@@ -34,7 +34,7 @@ const GlobalFeedTab = props => {
   const clickHandler = ev => {
     ev.preventDefault();
     props.history.push("/");
-    props.onTabClick('all', agent.Articles.all, agent.Articles.all());
+    props.onTabClick('all', agent.Articles.upcoming, agent.Articles.upcoming());
   };
 
    return (
