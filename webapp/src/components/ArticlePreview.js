@@ -33,21 +33,24 @@ const ArticlePreview = props => {
       props.favorite(article.slug);
     }
   };
-
+//style={{float: "left"}}
   return (
     <div className="article-preview">
       <a href={article.facebookLink} target="_blank" class="preview-link">
-        <div style={{margin: '0 10px'}}>
-        <h1>{article.title}</h1>
-        <DateRange start={article.start} end={article.end} /><p style={{float: 'right'}}>{article.venue}</p>
+        <div >
+            <h1>{article.title}</h1>
+            <DateRange start={article.start} end={article.end} /><p style={{float: 'right'}}>{article.venue}</p>
         </div>
         <img class="img-fluid" src={article.image} style={{'min-height': '50px'}} />
         <span>&nbsp;</span>
+        <div style={{float: 'left'}}>
+          <button style={{margin: '10px'}} className=" tag-pill tag-outline" onClick={this.displayQuestion}>ADD EVENT</button>
+         </div>
         <ul className="tag-list">
           {
             article.tagList.map(tag => {
               return (
-                <li className="tag-default tag-pill tag-outline" key={tag}>
+                <li style={{margin: '15px'}} className="tag-default tag-pill tag-outline" key={tag}>
                   {tag}
                 </li>
               )
