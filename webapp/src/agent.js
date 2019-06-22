@@ -47,7 +47,7 @@ const Auth = {
     console.log(login);
     console.log(password);
     return superagent.get(`${API_ROOT_2}/auth/user`).auth(login, password).then(response => {
-      return {user: {token: {login, password}}};
+      return {token: {login, password}, user: response.body};
     });
   }
   // register: (username, email, password) =>

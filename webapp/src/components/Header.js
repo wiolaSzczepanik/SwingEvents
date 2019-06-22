@@ -42,6 +42,14 @@ const LoggedOutView = props => {
 
 const LoggedInView = props => {
   if (props.currentUser) {
+
+    const adminLink = props.currentUser.admin ? 
+        <li className="nav-item">
+          <Link to="/admin" className="nav-link">
+            Admin
+          </Link>
+        </li> : null
+
     return (
       <ul className="nav navbar-nav pull-xs-right">
 
@@ -51,11 +59,13 @@ const LoggedInView = props => {
           </Link>
         </li>
 
-         <li className="nav-item">
+        <li className="nav-item">
           <Link to="/ongoing" className="nav-link">
             Aktualne
           </Link>
         </li>
+
+        {adminLink}
 
         <li className="nav-item">
           <a href="#" className="nav-link" onClick={props.onLogout}>
