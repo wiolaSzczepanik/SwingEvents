@@ -51,6 +51,9 @@ public class EventController {
 
     @RequestMapping("events/tags")
     public Set<String> getAllTags() {
+
+        log.info("[SPRING]--SEE ALL TAGS");
+
         Set<String> tags = new HashSet<>();
         try {
             List<JsonEvent> events = readAllEvents();
@@ -65,6 +68,10 @@ public class EventController {
 
     @RequestMapping("events/foregone")
     public List<JsonEvent> seeAllForegoneEvents() throws Exception {
+
+        log.info("[SPRING]--SEE ALL FOREGONE EVENTS");
+
+
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         Date todayDate = new Date();
         System.out.println("today: " + dateFormat.format(todayDate));

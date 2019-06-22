@@ -10,6 +10,7 @@ import Home from '../components/Home';
 import Login from '../components/Login';
 import OngoingEvent from '../components/OngoingEvent';
 import ForegoneEvent from '../components/ForegoneEvent';
+import UserEvents from '../components/UserEvents';
 import Profile from '../components/Profile';
 import ProfileFavorites from '../components/ProfileFavorites';
 import Register from '../components/Register';
@@ -61,6 +62,7 @@ class App extends React.Component {
             <Route exact path="/" render={(props) => <Home {...props} startTab="all"/> } />
             <Route path="/ongoing" component={OngoingEvent} />
             <Route path="/past" render={(props) => <Home {...props} startTab="past"/> } />
+            <Route path="/my" render={(props) => <Home {...props} startTab="my" /> } />
             <Route path="/login" component={Login} />
             <Route path="/register" component={Register} />
             <Route path="/editor/:slug" component={Editor} />

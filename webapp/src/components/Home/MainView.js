@@ -5,6 +5,8 @@ import { connect } from 'react-redux';
 import { CHANGE_TAB } from '../../constants/actionTypes';
 import OngoingEvent from '../OngoingEvent'
 import ForegoneEvent from '../ForegoneEvent'
+import UserEvents from '../UserEvents'
+
 
 import {Link} from 'react-router-dom';
 import { withRouter } from "react-router-dom";
@@ -74,14 +76,14 @@ const UserFeedTab = props => {
   const clickHandler = ev => {
     ev.preventDefault();
     props.history.push("/my");
-    props.onTabClick('my', agent.Articles.past, agent.Articles.my());
+    props.onTabClick('my', agent.Articles.my, agent.Articles.my());
   };
 
    return (
     <li className="nav-item">
       <a
         href=""
-        className={ props.tab === 'past' ? 'nav-link active' : 'nav-link' }
+        className={ props.tab === 'my' ? 'nav-link active' : 'nav-link' }
         onClick={clickHandler}>
         Moje wydarzenia
       </a>
