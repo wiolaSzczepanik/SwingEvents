@@ -1,5 +1,16 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { LOGOUT } from '../constants/actionTypes';
+
+const mapStateToProps = state => {
+  return {}
+};
+
+const mapDispatchToProps = dispatch => ({
+  onLogout: () =>
+    dispatch({ type: LOGOUT })
+});
 
 const LoggedOutView = props => {
   if (!props.currentUser) {
@@ -18,22 +29,14 @@ const LoggedOutView = props => {
           </Link>
         </li>
 
+        <li className="nav-item">
+            <Link to="/login" className="nav-link">
+              Zaloguj
+            </Link>
+          </li>
       </ul>
     );
   }
-
-// <li className="nav-item">
-//             <Link to="/login" className="nav-link">
-//               Zaloguj
-//             </Link>
-//           </li>
-
-//        <li className="nav-item">
-//            <Link to="/register" className="nav-link">
-//              Sign up
-//            </Link>
-//          </li>
-
   return null;
 };
 
@@ -48,25 +51,23 @@ const LoggedInView = props => {
           </Link>
         </li>
 
-        <li className="nav-item">
-          <Link to="/editor" className="nav-link">
-            <i className="ion-compose"></i>&nbsp;New Post
+         <li className="nav-item">
+          <Link to="/ongoing" className="nav-link">
+            Aktualne
           </Link>
         </li>
 
         <li className="nav-item">
-          <Link to="/settings" className="nav-link">
-            <i className="ion-gear-a"></i>&nbsp;Settings
-          </Link>
+          <a href="#" className="nav-link" onClick={props.onLogout}>
+            Wyloguj
+          </a> 
         </li>
 
         <li className="nav-item">
-          <Link
-            to={`/@${props.currentUser.username}`}
-            className="nav-link">
-            <img src={props.currentUser.image} className="user-pic" alt={props.currentUser.username} />
+          <span className="nav-link">
+            <i className="ion-person"></i>&nbsp;
             {props.currentUser.username}
-          </Link>
+          </span>
         </li>
 
       </ul>
@@ -88,11 +89,11 @@ class Header extends React.Component {
 
           <LoggedOutView currentUser={this.props.currentUser} />
 
-          <LoggedInView currentUser={this.props.currentUser} />
+          <LoggedInView currentUser={this.props.currentUser} onLogout={this.props.onLogout} />
         </div>
       </nav>
     );
   }
 }
 
-export default Header;
+export default connect(mapStateToProps, mapDispatchToProps)(Header);

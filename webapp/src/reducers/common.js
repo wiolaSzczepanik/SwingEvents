@@ -30,7 +30,7 @@ export default (state = defaultState, action) => {
         ...state,
         token: action.token || null,
         appLoaded: true,
-        currentUser: action.payload ? action.payload.user : null
+        currentUser: action.payload ? { username: action.payload.login, image: null } : null
       };
     case REDIRECT:
       return { ...state, redirectTo: null };
@@ -51,7 +51,7 @@ export default (state = defaultState, action) => {
         ...state,
         redirectTo: action.error ? null : '/',
         token: action.error ? null : action.payload.user.token,
-        currentUser: action.error ? null : action.payload.user.token.login
+        currentUser: action.error ? null : { username: action.payload.user.token.login }
       };
     case DELETE_ARTICLE:
       return { ...state, redirectTo: '/' };
