@@ -37,8 +37,11 @@ class Editor extends React.Component {
     const updateFieldEvent =
       key => ev => this.props.onUpdateField(key, ev.target.value);
     this.changeTitle = updateFieldEvent('title');
-    this.changeDescription = updateFieldEvent('description');
-    this.changeBody = updateFieldEvent('body');
+    this.changeCity = updateFieldEvent('city');
+    this.changeFacebookLink = updateFieldEvent('facebookLink');
+    this.changeImageLink = updateFieldEvent('imageLink');
+    this.changeStartDate = updateFieldEvent('startDate');
+    this.changeEndDate = updateFieldEvent('endDate');
     this.changeTagInput = updateFieldEvent('tagInput');
 
     this.watchForEnter = ev => {
@@ -55,10 +58,13 @@ class Editor extends React.Component {
     this.submitForm = ev => {
       ev.preventDefault();
       const article = {
-        title: this.props.title,
-        description: this.props.description,
-        body: this.props.body,
-        tagList: this.props.tagList
+        titleOfEvent: this.props.title,
+        cityOfEvent: this.props.city,
+        facebookLink: this.props.facebookLink,
+        image: this.props.imageLink,
+        startDate: this.props.startDate,
+        endDate: this.props.endDate,
+        tags: this.props.tagList,
       };
 
       const slug = { slug: this.props.articleSlug };
@@ -107,7 +113,7 @@ class Editor extends React.Component {
                     <input
                       className="form-control form-control-lg"
                       type="text"
-                      placeholder="Article Title"
+                      placeholder="Tytuł wydarzenia"
                       value={this.props.title}
                       onChange={this.changeTitle} />
                   </fieldset>
@@ -116,19 +122,45 @@ class Editor extends React.Component {
                     <input
                       className="form-control"
                       type="text"
-                      placeholder="What's this article about?"
-                      value={this.props.description}
-                      onChange={this.changeDescription} />
+                      placeholder="Miasto"
+                      value={this.props.city}
+                      onChange={this.changeCity} />
                   </fieldset>
 
                   <fieldset className="form-group">
-                    <textarea
+                    <input
                       className="form-control"
-                      rows="8"
-                      placeholder="Write your article (in markdown)"
-                      value={this.props.body}
-                      onChange={this.changeBody}>
-                    </textarea>
+                      type="text"
+                      placeholder="Link do wydarzenia na Facebooku"
+                      value={this.props.facebookLink}
+                      onChange={this.changeFacebookLink} />
+                  </fieldset>
+
+                  <fieldset className="form-group">
+                    <input
+                      className="form-control"
+                      type="text"
+                      placeholder="Link do zdjęcia"
+                      value={this.props.imageLink}
+                      onChange={this.changeImageLink} />
+                  </fieldset>
+
+                  <fieldset className="form-group">
+                    <input
+                      className="form-control"
+                      type="text"
+                      placeholder="Data rozpoczęcia"
+                      value={this.props.startDate}
+                      onChange={this.changeStartDate} />
+                  </fieldset>
+
+                  <fieldset className="form-group">
+                    <input
+                      className="form-control"
+                      type="text"
+                      placeholder="Data zakończenia"
+                      value={this.props.endDate}
+                      onChange={this.changeEndDate} />
                   </fieldset>
 
                   <fieldset className="form-group">

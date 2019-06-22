@@ -45,8 +45,8 @@ const LoggedInView = props => {
 
     const adminLink = props.currentUser.admin ? 
         <li className="nav-item">
-          <Link to="/admin" className="nav-link">
-            Admin
+          <Link to="/editor" className="nav-link">        
+            <i className="ion-compose"></i>&nbsp;Dodaj
           </Link>
         </li> : null
 

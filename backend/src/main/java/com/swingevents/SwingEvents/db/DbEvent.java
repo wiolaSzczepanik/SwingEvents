@@ -51,4 +51,18 @@ public class DbEvent {
                 .tags(Arrays.asList(tags.split(",")))
                 .build();
     }
+
+    public static DbEvent fromJsonEvent(JsonEvent event) {
+        DbEvent dbEvent = new DbEvent();
+        dbEvent.startdate = event.getStartDate();
+        dbEvent.enddate = event.getEndDate();
+        dbEvent.facebooklink = event.getFacebookLink();
+        dbEvent.image = event.getImage();
+        dbEvent.title = event.getTitleOfEvent();
+        dbEvent.city = event.getCityOfEvent();
+        if (event.getTags() != null) {
+            dbEvent.tags = String.join(",", event.getTags());
+        }
+        return dbEvent;
+    }
 }
