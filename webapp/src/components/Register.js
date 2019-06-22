@@ -53,14 +53,14 @@ class Register extends React.Component {
           <div className="row">
 
             <div className="col-md-6 offset-md-3 col-xs-12">
-              <h1 className="text-xs-center">Sign Up</h1>
+              <h1 className="text-xs-center">Aby założyć konto skontaktuj się z Wiolą lub Bartkiem</h1>
               <p className="text-xs-center">
                 <Link to="/login">
-                  Have an account?
+                  Masz już konto?
                 </Link>
               </p>
 
-              <ListErrors errors={this.props.errors} />
+              {/* <ListErrors errors={this.props.errors} />
 
               <form onSubmit={this.submitForm(username, email, password)}>
                 <fieldset>
@@ -100,7 +100,7 @@ class Register extends React.Component {
                   </button>
 
                 </fieldset>
-              </form>
+              </form> */}
             </div>
 
           </div>

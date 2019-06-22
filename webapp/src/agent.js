@@ -12,7 +12,7 @@ const responseBody = res => res.body;
 let token = null;
 const tokenPlugin = req => {
   if (token) {
-    req.set('authorization', `Token ${token}`);
+    req.auth(token.login, token.password);
   }
 }
 
@@ -42,13 +42,18 @@ const requests2 = {
 
 const Auth = {
   current: () =>
-    requests.get('/user'),
-  login: (email, password) =>
-    requests.post('/users/login', { user: { email, password } }),
-  register: (username, email, password) =>
-    requests.post('/users', { user: { username, email, password } }),
-  save: user =>
-    requests.put('/user', { user })
+    requests2.get('/auth/user'),
+  login: (login, password) => {
+    console.log(login);
+    console.log(password);
+    return superagent.get(`${API_ROOT_2}/auth/user`).auth(login, password).then(response => {
+      return {user: {token: {login, password}}};
+    });
+  }
+  // register: (username, email, password) =>
+  //   requests.post('/users', { user: { username, email, password } }),
+  // save: user =>
+  //   requests.put('/user', { user })
 };
 
 const Tags = {
