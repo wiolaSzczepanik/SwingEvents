@@ -69,6 +69,25 @@ const PastFeedTab = props => {
   );
 };
 
+const UserFeedTab = props => {
+
+  const clickHandler = ev => {
+    ev.preventDefault();
+    props.history.push("/my");
+    props.onTabClick('my', agent.Articles.my, agent.Articles.my());
+  };
+
+   return (
+    <li className="nav-item">
+      <a
+        href=""
+        className={ props.tab === 'my' ? 'nav-link active' : 'nav-link' }
+        onClick={clickHandler}>
+        Moje wydarzenia
+      </a>
+    </li>
+  );
+};
 
 const TagFilterTab = props => {
   if (!props.tag) {
@@ -107,7 +126,7 @@ const MainView = props => {
 
           <GlobalFeedTab tab={props.tab} onTabClick={props.onTabClick} history={props.history} />
           <PastFeedTab tab={props.tab} onTabClick={props.onTabClick} history={props.history} />
-
+          <UserFeedTab tab={props.tab} onTabClick={props.onTabClick} history={props.history} />
           <TagFilterTab tag={props.tag} />
 
         </ul>
