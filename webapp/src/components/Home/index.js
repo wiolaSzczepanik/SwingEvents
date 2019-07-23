@@ -31,9 +31,14 @@ class Home extends React.Component {
   componentWillMount() {
     const tab = this.props.startTab ? this.props.startTab : 'all'
 
-    const articlesPromise = tab == 'past' ?
-      agent.Articles.past :
-      agent.Articles.upcoming;
+//    const articlesPromise = tab == 'past' ?
+//      agent.Articles.past :
+//      agent.Articles.upcoming;
+
+const articlesPromise = tab == 'past' ?  agent.Articles.past
+                        : tab == 'my' ?  agent.Articles.my
+                        : agent.Articles.upcoming;
+
 
     this.props.onLoad(tab, articlesPromise, Promise.all([agent.Tags.getAll(), articlesPromise()]));
   }

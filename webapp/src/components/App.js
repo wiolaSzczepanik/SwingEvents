@@ -61,6 +61,7 @@ class App extends React.Component {
             <Route exact path="/" render={(props) => <Home {...props} startTab="all"/> } />
             <Route path="/ongoing" component={OngoingEvent} />
             <Route path="/past" render={(props) => <Home {...props} startTab="past"/> } />
+            <Route path="/my" render={(props) => <Home {...props} startTab="my" /> } />
             <Route path="/login" component={Login} />
             <Route path="/register" component={Register} />
             <Route path="/editor/:slug" component={Editor} />

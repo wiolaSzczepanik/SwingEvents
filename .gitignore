@@ -8,3 +8,4 @@ out/
 .vscode/
 prod-nginx/app/
 *.tar
+node_modules
