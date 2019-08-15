@@ -7,33 +7,48 @@ import './EventPreview.css'
 
 const EventPreview = props => {
   const event = props.event;
+  const info = event.facts;
+
+  const infoIconsAndOrder = [
+    {"info": "type", "icon": "fa-calendar"},
+    {"info": "style", "icon": "fa-music"},
+    {"info": "teachers", "icon": "fa-user-graduate"},
+    {"info": "bands", "icon": "fa-drum"},
+    {"info": "time", "icon": "fa-clock"},
+    {"info": "venue", "icon": "fa-map-marker-alt"},
+    {"info": "price", "icon": "fa-dollar-sign"},
+  ]
 
   return (
     <a href={event.facebookLink} target="_blank">
         <div className="EventPreview row">
             <div className="col-xs-2">
-             <img src={event.image} />
+             <img src={agent.API_ROOT_2 + '/images/' + event.id} />
             </div>
             <div className="col-xs-8">
                 <h1>{event.title}</h1>
-                <p>Start: 21:00</p>
-                <p>Miejsce: Lost Bar</p>
-                <p>Cena: darmowe</p>
+                <p>
+                {
+                    infoIconsAndOrder.map(infoRecord => {
+                      if(infoRecord.info in info) {
+                        const value = info[infoRecord.info];
 
-               {/* <ul className="tag-list">
-                  {
-                    event.tagList.map(tag => {
-                      return (
-                        <li className="tag-default tag-pill tag-outline" key={tag}>
-                          {tag}
-                        </li>
-                      )
+                        return (
+                            <div className="EventPreview_info"> <i className={'fas ' + infoRecord.icon}></i> {value}</div>
+                        );
+                      } else {
+                        return null;
+                      }
                     })
-                  }
-                </ul> */}
+                }
+                </p>
+                <p>
+                    {event.description}
+                </p>
+
             </div>
             <div className="col-xs-2">
-                <DateRange start={event.start} end={event.end} />
+                <DateRange start={event.startDate} end={event.endDate} />
             </div>
         </div>
     </a>

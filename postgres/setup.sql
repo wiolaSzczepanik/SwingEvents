@@ -15,3 +15,8 @@ create table user_roles (
   UNIQUE (username,role),
   FOREIGN KEY (username) REFERENCES users (username)
 );
+
+ALTER TABLE events ADD description text;
+ALTER TABLE events ADD facts text;
+
+CREATE TABLE event_images (id int PRIMARY KEY, main oid);

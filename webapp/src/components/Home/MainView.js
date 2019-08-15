@@ -85,7 +85,8 @@ const TagFilterTab = props => {
 };
 
 const mapStateToProps = state => ({
-  ...state.articleList,
+  ...state.eventList,
+  events: state.upcomingEvents.selectedEvents,
   tags: state.home.tags,
   token: state.common.token
 });
@@ -115,7 +116,7 @@ const MainView = props => {
 
       <EventList
         pager={props.pager}
-        events={props.articles}
+        events={props.events}
         loading={props.loading}
         eventsCount={props.articlesCount}
         currentPage={props.currentPage} />

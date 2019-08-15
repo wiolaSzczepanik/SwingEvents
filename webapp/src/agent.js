@@ -156,5 +156,7 @@ export default {
   Comments,
   Profile,
   Tags,
-  setToken: _token => { token = _token; }
+  setToken: _token => { token = _token; },
+  requests2,
+  API_ROOT_2
 };

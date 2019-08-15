@@ -32,3 +32,13 @@
     width: 150px;
     margin: 0 10px;
 }
+
+.EventPreview_info {
+   display: inline-block;
+   margin-right: 15px;
+   white-space:nowrap;
+}
+
+.EventPreview_info i {
+   margin-right: 6px;
+}

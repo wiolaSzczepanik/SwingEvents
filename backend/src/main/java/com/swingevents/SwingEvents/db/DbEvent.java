@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 
 @Entity
@@ -20,13 +22,19 @@ public class DbEvent {
     private long id;
 
     @Column
-    private String startdate;
+    private LocalDate startdate;
 
     @Column
-    private String enddate;
+    private LocalDate enddate;
 
     @Column
     private String title;
+
+    @Column
+    private String description;
+
+    @Column
+    private String facts;
 
     @Column
     private String city;
@@ -42,8 +50,8 @@ public class DbEvent {
 
     public JsonEvent toJsonEvent() {
         return JsonEvent.builder()
-                .startDate(startdate.split(" ")[0])
-                .endDate(enddate.split(" ")[0])
+                .startDate(startdate.format(DateTimeFormatter.ISO_DATE))
+                .endDate(enddate.format(DateTimeFormatter.ISO_DATE))
                 .titleOfEvent(title)
                 .cityOfEvent(city)
                 .facebookLink(facebooklink)
@@ -54,8 +62,8 @@ public class DbEvent {
 
     public static DbEvent fromJsonEvent(JsonEvent event) {
         DbEvent dbEvent = new DbEvent();
-        dbEvent.startdate = event.getStartDate();
-        dbEvent.enddate = event.getEndDate();
+        dbEvent.startdate = LocalDate.parse(event.getStartDate());
+        dbEvent.enddate = LocalDate.parse(event.getEndDate());
         dbEvent.facebooklink = event.getFacebookLink();
         dbEvent.image = event.getImage();
         dbEvent.title = event.getTitleOfEvent();
