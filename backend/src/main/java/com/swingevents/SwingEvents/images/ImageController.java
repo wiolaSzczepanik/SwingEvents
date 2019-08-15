@@ -22,6 +22,9 @@ public class ImageController {
     @Autowired
     private ImageRepository imageRepository;
 
+    @Autowired
+    private ImageFetchingService imageFetchingService;
+
     @RequestMapping("/images/{eventId}")
     public ResponseEntity<Resource> eventImages(@PathVariable("eventId") Integer eventId) {
         EventImages images = imageRepository.findById(eventId).orElseThrow(ResourceNotFoundException::new);
@@ -37,11 +40,9 @@ public class ImageController {
     }
 
 
-    @RequestMapping(value = "/images/{eventId}/upload", method = RequestMethod.POST)
+    @RequestMapping(value = "/admin/images/{eventId}/upload", method = RequestMethod.POST)
     public void uploadImage(@PathVariable("eventId") Integer eventId, @RequestBody UploadRequest uploadRequest) throws Exception {
-        InputStream stream = new URL(uploadRequest.getUrl()).openStream();
-        imageRepository.save(new EventImages(eventId, IOUtils.toByteArray(stream)));
-        stream.close();
+        imageFetchingService.uploadImage(eventId, uploadRequest.getUrl());
     }
 
     @ResponseStatus(value = HttpStatus.NOT_FOUND)

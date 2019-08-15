@@ -4,6 +4,7 @@ import lombok.Builder;
 import lombok.Data;
 
 import java.util.List;
+import java.util.Map;
 
 @Builder
 @Data
@@ -14,5 +15,7 @@ public class JsonEvent {
     private String cityOfEvent;
     private String facebookLink;
     private String image;
+    private String description;
+    private Map<String, String> facts;
     private List<String> tags;
 }

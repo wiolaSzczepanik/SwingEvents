@@ -30,7 +30,7 @@ public class UpcomingEventsController {
 
     @RequestMapping("/upcoming")
     public List<UpcomingEvent> upcomingEventsIn(@RequestParam("city") String city) throws Exception {
-        return eventsRepository.findUpcomingEventsIn(city, LocalDate.now(ZoneId.of("Europe/Warsaw")))
+        return eventsRepository.findUpcomingEventsIn(city, LocalDate.now(ZoneId.of("Europe/Warsaw")).minusDays(1))
                 .stream().map(this::toUpcomingEvent)
                 .collect(Collectors.toList());
     }

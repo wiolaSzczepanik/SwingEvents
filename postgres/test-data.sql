@@ -28,5 +28,9 @@ INSERT INTO user_roles (username, role) VALUES ('wiola', 'ROLE_USER');
 UPDATE events SET description=E'We would like to happily announce that date of Krak The Shag  2019:)  It will be 4th edition of this event! \nLet\'s gather together to enjoy Shag and Balboa dancing between the 19-22 September 2019!! Three days of workshops, 4 nights of parties :D, tons of hours full of joy, fun, conversations, craziness and dance of course!' WHERE ID=11;
 UPDATE events SET description=E'In 2019 we are going to celebrate our 10th anniversary. Every year our event has evolved and we\'ve kept changing it to make it better and one thing that has been on our mind is this: because we\'ve been renting one salt mine chamber, we\'ve had a hard limit of participants that we can accept. However, for Dragon Swing X, for one time only, we are going to have a vast swathe of the salt mine to our disposal: three dance floors, a kilometer of connecting tunnels between them and other purpose chambers. Come to Krakow and celebrate with us.' WHERE ID=12;
 
-UPDATE events SET facts=E'{"type": "Festiwal", "style": "Collegiate Shag", "bands": "Professor Cunningham and his Old School"}' WHERE ID=11;
+UPDATE events SET description=E'Jak co roku, zapraszamy Was do Poznania, jednego z najpiękniejszych polskich miast 👍 Bądźcie gotowi, bo czeka nas: * 4 imprezy w niesamowitych miejscach, z muzyką na żywo i świetnymi DJ\'ami i Before Party w środę * private classes oraz tastery z polskimi i międzynarodowymi nauczycielami * konkursy JnJ z cennymi nagrodami * praktyczne około-swingowe zajęcia w ciągu dnia' WHERE ID=14;
+
+UPDATE events SET facts=E'{"type": "Festiwal", "style": "Collegiate Shag, Balboa", "bands": "Professor Cunningham and his Old School"}' WHERE ID=11;
 UPDATE events SET facts=E'{"type": "Festiwal", "style": "Lindy Hop", "bands": "Lazy Swingers Band, Shirt Tail Stompers i więcej"}' WHERE ID=12;
+
+UPDATE events SET facts=E'{"type": "Exchange", "style": "Lindy Hop", "bands": "Peters Peppers"}' WHERE ID=14;

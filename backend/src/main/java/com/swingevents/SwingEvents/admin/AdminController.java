@@ -1,5 +1,7 @@
 package com.swingevents.SwingEvents.admin;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.swingevents.SwingEvents.images.ImageFetchingService;
 import lombok.extern.slf4j.Slf4j;
 
 import com.swingevents.SwingEvents.JsonEvent;
@@ -21,10 +23,19 @@ public class AdminController {
     @Autowired
     private EventsRepository eventsRepository;
 
+    @Autowired
+    private ImageFetchingService imageFetchingService;
+
+    @Autowired
+    private ObjectMapper mapper;
+
     @RequestMapping("/events")
-    public JsonEvent addEvent(@RequestBody JsonEvent event) {
+    public JsonEvent addEvent(@RequestBody JsonEvent event) throws Exception {
         log.info(event.toString());
-        DbEvent addedEvent = eventsRepository.save(DbEvent.fromJsonEvent(event));
+        DbEvent addedEvent = eventsRepository.save(DbEvent.fromJsonEvent(event, mapper));
+
+        imageFetchingService.uploadImage(addedEvent.getId().intValue(), event.getImage());
+
         return addedEvent.toJsonEvent();
     }
 }
