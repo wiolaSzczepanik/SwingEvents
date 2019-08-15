@@ -1,0 +1,34 @@
+.EventPreview {
+    border: 1px solid rgba(0,0,0,.1);
+    padding: 1.5rem 0;
+    margin-bottom: 30px
+}
+
+.EventPreview h1 {
+    font-weight: 600!important;
+    font-size: 1.5rem!important;
+    margin-bottom: 3px;
+    line-height: 1.1;
+    color: #5cb85c;
+}
+
+.EventPreview p {
+    font-weight: 300;
+    font-size: 24px;
+    color: #999;
+    margin-bottom: 15px;
+    font-size: 1rem;
+    line-height: 1.3rem;
+}
+
+.EventPreview a, a:hover {
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.EventPreview img {
+    object-fit: cover;
+    height: 150px;
+    width: 150px;
+    margin: 0 10px;
+}

@@ -1,4 +1,4 @@
-import ArticleList from '../ArticleList';
+import EventList from '../EventList/EventList';
 import React from 'react';
 import agent from '../../agent';
 import { connect } from 'react-redux';
@@ -96,8 +96,8 @@ const mapDispatchToProps = dispatch => ({
 
 const MainView = props => {
   return (
-    <div className="col-md-9">
-      <div className="feed-toggle">
+    <div className="col-md-12">
+      {/*<div className="feed-toggle">
         <ul className="nav nav-pills outline-active">
 
           <YourFeedTab
@@ -111,13 +111,13 @@ const MainView = props => {
           <TagFilterTab tag={props.tag} />
 
         </ul>
-      </div>
+      </div>*/}
 
-      <ArticleList
+      <EventList
         pager={props.pager}
-        articles={props.articles}
+        events={props.articles}
         loading={props.loading}
-        articlesCount={props.articlesCount}
+        eventsCount={props.articlesCount}
         currentPage={props.currentPage} />
     </div>
   );

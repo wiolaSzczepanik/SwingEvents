@@ -51,18 +51,6 @@ class Home extends React.Component {
         <div className="container page">
           <div className="row">
             <MainView />
-
-            <div className="col-md-3">
-              <div className="sidebar">
-
-                <p>Tagi</p>
-
-                <Tags
-                  tags={this.props.tags}
-                  onClickTag={this.props.onClickTag} />
-
-              </div>
-            </div>
           </div>
         </div>
 
