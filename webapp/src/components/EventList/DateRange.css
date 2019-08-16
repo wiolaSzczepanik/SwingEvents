@@ -8,10 +8,18 @@
 
 }
 
-.DateRange_dayname {
-
+.col-xs-12 .DateRange {
+    margin-top: 0;
+    font-size: 25px;
+    text-align: left;
 }
 
-.DateRange_date {
 
+.col-xs-12 .DateRange_dayname {
+    display: inline;
+    margin-right: 20px
+}
+
+.col-xs-12 .DateRange_date {
+    display: inline;
 }

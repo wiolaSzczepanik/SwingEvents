@@ -21,6 +21,7 @@ const EventPreview = props => {
 
   return (
     <a href={event.facebookLink} target="_blank">
+        <div className="d-none d-sm-block">
         <div className="EventPreview row">
             <div className="col-xs-2">
              <img src={agent.API_ROOT_2 + '/images/' + event.id} />
@@ -50,6 +51,42 @@ const EventPreview = props => {
             <div className="col-xs-2">
                 <DateRange start={event.startDate} end={event.endDate} />
             </div>
+        </div>
+    </div>
+    <div className="d-block d-sm-none">
+        <div className="EventPreview row">
+        <div className="col-xs-12">
+             <DateRange start={event.startDate} end={event.endDate} />
+             </div>
+            <div className="col-xs-12">
+                <h1>{event.title}</h1>
+                <p>
+                {
+                    infoIconsAndOrder.map(infoRecord => {
+                      if(infoRecord.info in info) {
+                        const value = info[infoRecord.info];
+
+                        return (
+                            <div className="EventPreview_info"> <i className={'fas ' + infoRecord.icon}></i> {value}</div>
+                        );
+                      } else {
+                        return null;
+                      }
+                    })
+                }
+                </p>
+
+                </div>
+
+                <div className="col-xs-12">
+                <p>
+                    <img src={agent.API_ROOT_2 + '/images/' + event.id} />
+                    {event.description}
+                </p>
+
+            </div>
+
+        </div>
         </div>
     </a>
   );
