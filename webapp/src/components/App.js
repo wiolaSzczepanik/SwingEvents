@@ -59,6 +59,7 @@ class App extends React.Component {
                   currentUser={this.props.currentUser} /> */}
             <Switch>
                 <Route exact path="/" render={(props) => <Home {...props} startTab="all"/> } />
+                <Route exact path="/:city" render={(props) => <Home {...props} startTab="all"/> } />
 //                <Route path="/ongoing" component={OngoingEvent} />
 //                <Route path="/past" render={(props) => <Home {...props} startTab="past"/> } />
 //                <Route path="/login" component={Login} />

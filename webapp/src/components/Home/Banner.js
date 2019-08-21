@@ -3,22 +3,39 @@ import './Banner.css'
 import { connect } from 'react-redux';
 import { CHANGE_TAB } from '../../constants/actionTypes';
 import { selectCity } from '../../state/upcomingEvents/actions';
+import { withRouter } from "react-router-dom";
 
 const mapStateToProps = state => ({
   selectedCity: state.upcomingEvents.selectedCity,
 });
 
 const mapDispatchToProps = dispatch => ({
-  cityClick: (city) => dispatch(selectCity(city))
+  cityClick: (city, history) => {
+    if (window.gtag) {
+        window.gtag('config', 'UA-146133800-1', {'page_path': '/' + city.key}); // TODO: remove double counting of first page
+    }
+    history.push(city.key);
+    dispatch(selectCity(city))
+  }
 });
 
 class Banner extends React.Component {
   componentWillMount() {
-      this.props.cityClick(this.props.selectedCity);
+     const citiesByKey = {
+        'Kraków': {key: 'Kraków', locative: 'Krakowie'},
+        'Poznań': {key: 'Poznań', locative: 'Poznaniu'}
+     }
+
+     let city = this.props.selectedCity;
+     if (this.props.citySlug != undefined && this.props.citySlug !== this.props.selectedCity.key) {
+         city = citiesByKey[this.props.citySlug];       // TODO: move this to redux
+     }
+
+     this.props.cityClick(city, this.props.history);
   }
 
   render() {
-      const { appName, token, selectedCity, cityClick } = this.props;
+      const { appName, token, selectedCity, cityClick, citySlug } = this.props;
 
       const cities = [
         {key: 'Kraków', locative: 'Krakowie'},
@@ -43,7 +60,7 @@ class Banner extends React.Component {
                 {
                     cities.map(city => {
                         return (
-                          <a className="dropdown-item" href="#" onClick={() => cityClick(city)} >&nbsp; {city.locative} &nbsp; &nbsp; </a>
+                          <a className="dropdown-item" href="#" onClick={() => cityClick(city, this.props.history)} >&nbsp; {city.locative} &nbsp; &nbsp; </a>
                         );
                       })
                 }
@@ -55,4 +72,4 @@ class Banner extends React.Component {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Banner);
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Banner));
