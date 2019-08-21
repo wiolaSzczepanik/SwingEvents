@@ -20,7 +20,7 @@ const EventPreview = props => {
   ]
 
   return (
-    <a href={event.facebookLink} target="_blank">
+    <a href={event.link} target="_blank">
         <div className="d-none d-sm-block">
         <div className="EventPreview row">
             <div className="col-xs-2">
