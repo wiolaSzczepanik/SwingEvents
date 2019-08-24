@@ -16,5 +16,6 @@ public class UpcomingEvent {
     private String link;
     private String image;
     private String description;
+    private EventStatus status;
     private Map<String, String> facts;
 }

@@ -12,6 +12,6 @@ import java.util.List;
 public interface EventsRepository extends JpaRepository<DbEvent, Long> {
     List<DbEvent> findAll();
 
-    @Query("select e from DbEvent e WHERE e.city = :city AND e.enddate > :from ORDER BY e.startdate")
+    @Query("select e from DbEvent e WHERE e.city = :city AND e.status != 'DELETED' AND e.enddate > :from ORDER BY e.startdate")
     List<DbEvent> findUpcomingEventsIn(@Param("city") String city, @Param("from") LocalDate from);
 }

@@ -54,6 +54,9 @@ public class DbEvent {
     @Column
     private String tags;
 
+    @Column
+    private String status;
+
     public JsonEvent toJsonEvent() {
         return JsonEvent.builder()
                 .startDate(startdate.format(DateTimeFormatter.ISO_DATE))

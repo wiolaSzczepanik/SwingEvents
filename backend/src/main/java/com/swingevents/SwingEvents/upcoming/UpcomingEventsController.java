@@ -55,6 +55,7 @@ public class UpcomingEventsController {
                 .title(dbEvent.getTitle())
                 .description(dbEvent.getDescription())
                 .facts(facts)
+                .status(EventStatus.valueOf(dbEvent.getStatus()))
                 .build();
     }
 }
