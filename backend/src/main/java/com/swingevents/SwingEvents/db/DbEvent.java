@@ -3,6 +3,7 @@ package com.swingevents.SwingEvents.db;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.swingevents.SwingEvents.JsonEvent;
+import com.swingevents.SwingEvents.upcoming.EventStatus;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -78,6 +79,7 @@ public class DbEvent {
         dbEvent.title = event.getTitleOfEvent();
         dbEvent.city = event.getCityOfEvent();
         dbEvent.description = event.getDescription();
+        dbEvent.status = EventStatus.CONFIRMED.toString();
         try {
             dbEvent.facts = mapper.writeValueAsString(event.getFacts());
         } catch (JsonProcessingException e) {
