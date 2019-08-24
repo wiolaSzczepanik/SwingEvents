@@ -20,3 +20,7 @@ ALTER TABLE events ADD description text;
 ALTER TABLE events ADD facts text;
 
 CREATE TABLE event_images (id int PRIMARY KEY, main oid);
+
+ALTER TABLE events ADD status varchar(20);
+
+update events set status='confirmed';
