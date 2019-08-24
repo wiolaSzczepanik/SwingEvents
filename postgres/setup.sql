@@ -23,4 +23,4 @@ CREATE TABLE event_images (id int PRIMARY KEY, main oid);
 
 ALTER TABLE events ADD status varchar(20);
 
-update events set status='confirmed';
+update events set status='CONFIRMED';

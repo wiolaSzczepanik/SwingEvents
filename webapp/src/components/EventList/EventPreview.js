@@ -21,8 +21,9 @@ const EventPreview = props => {
 
   return (
     <a href={event.link} target="_blank">
+        {/* Wide screen */}
         <div className="d-none d-sm-block">
-        <div className="EventPreview row">
+        <div className={'EventPreview row ' + (event.status === 'NOT_CONFIRMED' ? 'EventPreview_not-confirmed' : '')}>
             <div className="col-xs-2">
              <img src={agent.API_ROOT_2 + '/images/' + event.id} />
             </div>
@@ -50,9 +51,15 @@ const EventPreview = props => {
             </div>
             <div className="col-xs-2">
                 <DateRange start={event.startDate} end={event.endDate} />
+                {
+                   event.status === 'NOT_CONFIRMED'
+                        && <div className="EventPreview_not-confirmed-badge badge badge-success" role="alert"> Niepotwierdzone! </div>
+                }
+
             </div>
         </div>
     </div>
+    {/* Mobile screen */}
     <div className="d-block d-sm-none">
         <div className="EventPreview row">
         <div className="col-xs-12">

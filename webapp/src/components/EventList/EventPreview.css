@@ -4,6 +4,11 @@
     margin-bottom: 30px
 }
 
+.EventPreview_not-confirmed {
+    background-image: linear-gradient(45deg, rgba(222, 222, 222, 0.1) 9.09%, rgba(255, 255, 255, 0.1) 9.09%, rgba(255, 255, 255, 0.1) 50%, rgba(222, 222, 222, 0.1) 50%, rgba(222, 222, 222, 0.1) 59.09%, rgba(255, 255, 255, 0.1) 59.09%, rgba(255, 255, 255, 0.1) 100%);
+    background-size: 15.56px 15.56px;
+}
+
 .EventPreview h1 {
     font-weight: 600!important;
     font-size: 1.5rem!important;
@@ -47,4 +52,11 @@
 
 .EventPreview_info i {
    margin-right: 6px;
+}
+
+.EventPreview_not-confirmed-badge {
+   text-align: center;
+   background-color: #999;
+   display: block;
+   font-size: 85%;
 }
