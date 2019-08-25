@@ -12,31 +12,21 @@ function requestedUpcomingEvents(city) {
     return { type: REQUESTED_UPCOMING_EVENTS, city }
 }
 
-export const SELECTED_CITY = 'SELECTED_CITY';
-function selectedCity(city) {
-    return { type: SELECTED_CITY, city }
-}
-
 // commands
 
-export function selectCity(city) {
-    return function(dispatch) {
-        window.localStorage.setItem('selectedCity', JSON.stringify(city))
-        dispatch(selectedCity(city));
-        dispatch(fetchUpcomingEventsIfNeeded(city));
-    }
-}
-
-function fetchUpcomingEventsIfNeeded(city) {
+export function fetchUpcomingEventsIfNeeded(filter) {
     return (dispatch, getState) => {
-       if (shouldFetchUpcomingEvents(getState(), city)) {
-         return dispatch(fetchUpcomingEvents(city))
+       if (shouldFetchUpcomingEvents(getState(), filter.city)) {
+         return dispatch(fetchUpcomingEvents(filter.city))
        }
     }
 }
 
 function shouldFetchUpcomingEvents(state, city) {
-  const events = state.upcomingEvents[city]
+  if(!state.upcomingEvents || !state.upcomingEvents.events) {
+    return true;
+  }
+  const events = state.upcomingEvents.events[city.key]
   if (!events) {
     return true
   } else if (events.isFetching) {
@@ -44,7 +34,7 @@ function shouldFetchUpcomingEvents(state, city) {
   } else {
     // always refresh when changing city selector, user may think it's always getting fresh data
     // to be replaced with more sophisticated caching strategy later (e.g. refresh when data is older than 5 mins)
-    return state.selectedCity != city;
+    return state.upcomingEvents.lastCityFetched != city.key;
   }
 }
 function fetchUpcomingEvents(city) {

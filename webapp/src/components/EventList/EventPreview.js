@@ -8,7 +8,6 @@ import './EventPreview.css'
 const EventPreview = props => {
   const event = props.event;
   const info = event.facts;
-
   const infoIconsAndOrder = [
     {"info": "type", "icon": "fa-calendar"},
     {"info": "style", "icon": "fa-music"},

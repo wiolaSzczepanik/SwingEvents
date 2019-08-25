@@ -1,5 +1,7 @@
 import article from './reducers/article';
 import articleList from './reducers/articleList';
+import eventFilter from './state/eventFilter/reducer';
+import managedEvents from './state/managedEvents/reducer';
 import upcomingEvents from './state/upcomingEvents/reducer';
 import auth from './reducers/auth';
 import { combineReducers } from 'redux';
@@ -13,6 +15,8 @@ import { routerReducer } from 'react-router-redux';
 export default combineReducers({
   article,
   articleList,
+  eventFilter,
+  managedEvents,
   upcomingEvents,
   auth,
   common,

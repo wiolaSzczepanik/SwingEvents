@@ -1,52 +1,49 @@
-import Banner from './Banner';
+import Banner from '../Banner/Banner';
 import MainView from './MainView';
 import React from 'react';
-import Tags from './Tags';
-import agent from '../../agent';
 import { connect } from 'react-redux';
-import {
-  HOME_PAGE_LOADED,
-  HOME_PAGE_UNLOADED,
-  APPLY_TAG_FILTER
-} from '../../constants/actionTypes';
-
-const Promise = global.Promise;
+import { withRouter } from "react-router-dom";
 
 const mapStateToProps = state => ({
   ...state.home,
-  appName: state.common.appName,
   token: state.common.token,
 });
 
 const mapDispatchToProps = dispatch => ({
-  onClickTag: (tag, pager, payload) =>
-    dispatch({ type: APPLY_TAG_FILTER, tag, pager, payload }),
-  onLoad: (tab, pager, payload) =>
-    dispatch({ type: HOME_PAGE_LOADED, tab, pager, payload }),
-  onUnload: () =>
-    dispatch({  type: HOME_PAGE_UNLOADED })
+
 });
 
+const onCityChange = (history) => (city) => {
+    if (window.gtag) {
+        window.gtag('config', 'UA-146133800-1', {'page_path': '/' + city.key}); // TODO: remove double counting of first page
+    }
+    history.push(city.key);
+    window.localStorage.setItem('selectedCity', JSON.stringify(city))
+}
+
+const initialCity = (citySlug) => _ => {
+    const citiesByKey = {
+        'Kraków': {key: 'Kraków', locative: 'Krakowie'},
+        'Poznań': {key: 'Poznań', locative: 'Poznaniu'}
+     }
+
+     if (citySlug != undefined) {
+        return citiesByKey[citySlug];
+     }
+
+     const localStorageCity = window.localStorage.getItem('selectedCity');
+     if (localStorageCity) {
+        return JSON.parse(localStorageCity);
+     }
+
+     return citiesByKey['Kraków'];
+}
+
 class Home extends React.Component {
-  componentWillMount() {
-    const tab = this.props.startTab ? this.props.startTab : 'all'
-
-    const articlesPromise = tab == 'past' ?
-      agent.Articles.past :
-      agent.Articles.upcoming;
-
-    this.props.onLoad(tab, articlesPromise, Promise.all([agent.Tags.getAll(), articlesPromise()]));
-  }
-
-  componentWillUnmount() {
-    this.props.onUnload();
-  }
-
   render() {
     return (
       <div className="home-page">
-
-        <Banner token={this.props.token} appName={this.props.appName} citySlug={this.props.match.params.city} />
+        <Banner onChange={onCityChange(this.props.history)} initialCity={initialCity(this.props.match.params.city)}/>
 
         <div className="container page">
           <div className="row">
@@ -59,4 +56,4 @@ class Home extends React.Component {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Home);
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Home));

@@ -2,49 +2,37 @@ import React from 'react';
 import './Banner.css'
 import { connect } from 'react-redux';
 import { CHANGE_TAB } from '../../constants/actionTypes';
-import { selectCity } from '../../state/upcomingEvents/actions';
+import { selectCity } from '../../state/eventFilter/actions';
 import { withRouter } from "react-router-dom";
 
 const mapStateToProps = state => ({
-  selectedCity: state.upcomingEvents.selectedCity,
+  selectedCity: state.eventFilter.city,
 });
 
 const mapDispatchToProps = dispatch => ({
-  cityClick: (city, history) => {
-    if (window.gtag) {
-        window.gtag('config', 'UA-146133800-1', {'page_path': '/' + city.key}); // TODO: remove double counting of first page
-    }
-    history.push(city.key);
+  cityClick: (city, onChange) => {
+    onChange(city);
     dispatch(selectCity(city))
   }
 });
 
 class Banner extends React.Component {
   componentWillMount() {
-     const citiesByKey = {
-        'Kraków': {key: 'Kraków', locative: 'Krakowie'},
-        'Poznań': {key: 'Poznań', locative: 'Poznaniu'}
-     }
-
-     let city = this.props.selectedCity;
-     if (this.props.citySlug != undefined && this.props.citySlug !== this.props.selectedCity.key) {
-         city = citiesByKey[this.props.citySlug];       // TODO: move this to redux
-     }
-
-     this.props.cityClick(city, this.props.history);
+     this.props.cityClick(this.props.initialCity(), this.props.onChange);
   }
 
   render() {
-      const { appName, token, selectedCity, cityClick, citySlug } = this.props;
+      const { onChange, selectedCity, cityClick } = this.props;
 
       const cities = [
         {key: 'Kraków', locative: 'Krakowie'},
         {key: 'Poznań', locative: 'Poznaniu'}
       ]
 
-      if (token) {
+      if (!this.props.selectedCity) {
         return null;
       }
+
       return (
         <div className="Banner">
           <div className="container">
@@ -60,7 +48,7 @@ class Banner extends React.Component {
                 {
                     cities.map(city => {
                         return (
-                          <a className="dropdown-item" href="#" onClick={() => cityClick(city, this.props.history)} >&nbsp; {city.locative} &nbsp; &nbsp; </a>
+                          <a className="dropdown-item" href="#" onClick={() => cityClick(city, onChange)} >&nbsp; {city.locative} &nbsp; &nbsp; </a>
                         );
                       })
                 }

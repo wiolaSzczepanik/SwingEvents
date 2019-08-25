@@ -1,12 +1,12 @@
 import agent from '../agent';
-import Header from './Header';
 import React from 'react';
 import { connect } from 'react-redux';
 import { APP_LOAD, REDIRECT } from '../constants/actionTypes';
 import { Route, Switch } from 'react-router-dom';
 import Article from '../components/Article';
-import Editor from '../components/Editor';
+import Editor from '../components/Editor/';
 import Home from '../components/Home';
+import Admin from '../components/Admin';
 import Login from '../components/Login';
 import OngoingEvent from '../components/OngoingEvent';
 import ForegoneEvent from '../components/ForegoneEvent';
@@ -54,15 +54,18 @@ class App extends React.Component {
     if (this.props.appLoaded) {
       return (
         <div>
-            {/*<Header
-                  appName={this.props.appName}
-                  currentUser={this.props.currentUser} /> */}
             <Switch>
                 <Route exact path="/" render={(props) => <Home {...props} startTab="all"/> } />
+                <Route path="/login" component={Login} />
+                <Route path="/staff/editor/:id" component={Editor} />
+                <Route path="/staff/editor" component={Editor} />
+                <Route path="/staff" render={(props) => <Admin {...props} />} />
+
                 <Route exact path="/:city" render={(props) => <Home {...props} startTab="all"/> } />
+
 //                <Route path="/ongoing" component={OngoingEvent} />
 //                <Route path="/past" render={(props) => <Home {...props} startTab="past"/> } />
-//                <Route path="/login" component={Login} />
+
 //                <Route path="/register" component={Register} />
 //                <Route path="/editor/:slug" component={Editor} />
 //                <Route path="/editor" component={Editor} />

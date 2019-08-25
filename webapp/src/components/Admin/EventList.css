@@ -1,0 +1,12 @@
+.EventList_buttons button {
+    display: block;
+    margin-bottom: 10px;
+    width: 100%;
+}
+
+.EventList_new-event {
+    width: 100%;
+    margin-bottom: 20px;
+    height: 100px;
+    margin-left: -7px;
+}

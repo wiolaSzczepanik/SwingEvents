@@ -2,126 +2,48 @@ import EventList from '../EventList/EventList';
 import React from 'react';
 import agent from '../../agent';
 import { connect } from 'react-redux';
-import { CHANGE_TAB } from '../../constants/actionTypes';
 import OngoingEvent from '../OngoingEvent'
 import ForegoneEvent from '../ForegoneEvent'
+import { fetchUpcomingEventsIfNeeded } from '../../state/upcomingEvents/actions';
 
 import {Link} from 'react-router-dom';
 import { withRouter } from "react-router-dom";
 
-const YourFeedTab = props => {
-  if (props.token) {
-    const clickHandler = ev => {
-      ev.preventDefault();
-      props.onTabClick('feed', agent.Articles.feed, agent.Articles.feed());
+function selectedEvents(events, city) {
+    if (!events || !city) {
+        return null
     }
-
-    return (
-      <li className="nav-item">
-        <a  href=""
-            className={ props.tab === 'feed' ? 'nav-link active' : 'nav-link' }
-            onClick={clickHandler}>
-          Your Feed
-        </a>
-      </li>
-    );
-  }
-  return null;
-};
-
-const GlobalFeedTab = props => {
-
-  const clickHandler = ev => {
-    ev.preventDefault();
-    props.history.push("/");
-    props.onTabClick('all', agent.Articles.upcoming, agent.Articles.upcoming());
-  };
-
-   return (
-    <li className="nav-item">
-      <a
-        href=""
-        className={ props.tab === 'all' ? 'nav-link active' : 'nav-link' }
-        onClick={clickHandler}>
-        Nadchodzące wydarzenia
-      </a>
-    </li>
-  );
-};
-
-const PastFeedTab = props => {
-
-  const clickHandler = ev => {
-    ev.preventDefault();
-    props.history.push("/past");
-    props.onTabClick('past', agent.Articles.past, agent.Articles.past());
-  };
-
-   return (
-    <li className="nav-item">
-      <a
-        href=""
-        className={ props.tab === 'past' ? 'nav-link active' : 'nav-link' }
-        onClick={clickHandler}>
-        Minione wydarzenia
-      </a>
-    </li>
-  );
-};
-
-
-const TagFilterTab = props => {
-  if (!props.tag) {
-    return null;
-  }
-
-  return (
-    <li className="nav-item">
-      <a href="" className="nav-link active">
-        <i className="ion-pound"></i> {props.tag}
-      </a>
-    </li>
-  );
-};
+    return events[city.key];
+}
 
 const mapStateToProps = state => ({
   ...state.eventList,
-  events: state.upcomingEvents.selectedEvents,
-  tags: state.home.tags,
-  token: state.common.token
+  events: selectedEvents(state.upcomingEvents.events, state.eventFilter.city),
+  token: state.common.token,
+  filter: state.eventFilter,
 });
 
 const mapDispatchToProps = dispatch => ({
-  onTabClick: (tab, pager, payload) => dispatch({ type: CHANGE_TAB, tab, pager, payload })
+  fetchEvents: (filter) => dispatch(fetchUpcomingEventsIfNeeded(filter))
 });
 
-const MainView = props => {
-  return (
+class MainView extends React.Component {
+  componentWillMount() {
+    this.props.fetchEvents(this.props.filter);
+  }
+  componentDidUpdate(prevProps) {
+    this.props.fetchEvents(this.props.filter);
+  }
+
+  render() {
+    return (
     <div className="col-md-12">
-      {/*<div className="feed-toggle">
-        <ul className="nav nav-pills outline-active">
-
-          <YourFeedTab
-            token={props.token}
-            tab={props.tab}
-            onTabClick={props.onTabClick} />
-
-          <GlobalFeedTab tab={props.tab} onTabClick={props.onTabClick} history={props.history} />
-          <PastFeedTab tab={props.tab} onTabClick={props.onTabClick} history={props.history} />
-
-          <TagFilterTab tag={props.tag} />
-
-        </ul>
-      </div>*/}
-
       <EventList
-        pager={props.pager}
-        events={props.events}
-        loading={props.loading}
-        eventsCount={props.articlesCount}
-        currentPage={props.currentPage} />
+        events={this.props.events}
+        loading={this.props.loading}/>
     </div>
-  );
+    );
+  }
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(withRouter(MainView));

@@ -1,11 +1,11 @@
 import {
-  REQUESTED_UPCOMING_EVENTS,
-  RECEIVED_UPCOMING_EVENTS
+  REQUESTED_MANAGED_EVENTS,
+  RECEIVED_MANAGED_EVENTS,
 } from './actions';
 
 export default (state = {}, action) => {
   switch (action.type) {
-    case RECEIVED_UPCOMING_EVENTS:
+    case RECEIVED_MANAGED_EVENTS:
       const newEvents = {
          ...state.events,
          [action.city.key]: action.events,
