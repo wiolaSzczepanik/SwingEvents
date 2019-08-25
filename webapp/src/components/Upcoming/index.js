@@ -43,9 +43,7 @@ class Home extends React.Component {
         <Banner onChange={onCityChange(this.props.history)} initialCity={initialCity(this.props.match.params.city)}/>
 
         <div className="container page">
-          <div className="row">
             <MainView />
-          </div>
         </div>
 
       </div>

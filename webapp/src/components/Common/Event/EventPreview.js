@@ -23,10 +23,10 @@ const EventPreview = props => {
         {/* Wide screen */}
         <div className="d-none d-sm-block">
         <div className={'EventPreview row ' + (event.status === 'NOT_CONFIRMED' ? 'EventPreview_not-confirmed' : '')}>
-            <div className="col-xs-2">
+            <div className="col-2">
              <img src={agent.API_ROOT_2 + '/images/' + event.id} />
             </div>
-            <div className="col-xs-8">
+            <div className="col-8">
                 <h1>{event.title}</h1>
                 <p>
                 {
@@ -48,7 +48,7 @@ const EventPreview = props => {
                 </p>
 
             </div>
-            <div className="col-xs-2">
+            <div className="col-2">
                 <DateRange start={event.startDate} end={event.endDate} />
                 {
                    event.status === 'NOT_CONFIRMED'

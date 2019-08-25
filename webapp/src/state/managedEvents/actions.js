@@ -14,6 +14,12 @@ function requestedManagedEvents(city) {
 
 // commands
 
+export function refreshManagedEvents() {
+    return (dispatch, getState) => {
+       return dispatch(fetchManagedEvents(getState().eventFilter.city))
+    }
+}
+
 export function fetchManagedEventsIfNeeded(filter) {
     return (dispatch, getState) => {
        if (shouldFetchManagedEvents(getState(), filter.city)) {

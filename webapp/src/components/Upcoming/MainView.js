@@ -32,11 +32,9 @@ class MainView extends React.Component {
 
   render() {
     return (
-    <div className="col-md-12">
       <EventList
         events={this.props.events}
         loading={this.props.loading}/>
-    </div>
     );
   }
 };

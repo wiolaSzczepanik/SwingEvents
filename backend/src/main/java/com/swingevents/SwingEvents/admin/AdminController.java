@@ -41,6 +41,12 @@ public class AdminController {
         return addedEvent.toJsonEvent();
     }
 
+    @RequestMapping(value = "/events/{id}",method = RequestMethod.GET)
+    public UpcomingEvent getSingleEvent(@PathVariable("id") Long id){
+        DbEvent dbEvent = eventsRepository.findById(id).orElseThrow(() -> new RuntimeException("Not found"));
+        return UpcomingEvent.fromDbEvent(dbEvent, mapper);
+    }
+
     @RequestMapping(value = "/events/{id}",method = RequestMethod.PUT)
     public void editAdminEvent(@PathVariable("id") Long id, @RequestBody UpcomingEvent event){
         log.info("Edit event: id: {}, title: {}", id, event.getTitle());

@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import EventPreview from '../../Common/Event/EventPreview';
 
 import { Form, Field } from 'react-final-form'
+import { Link } from 'react-router-dom';
 
 const mapStateToProps = state => ({
 
@@ -15,23 +16,24 @@ const mapDispatchToProps = dispatch => ({
 
 const sleep = ms => new Promise(resolve => setTimeout(resolve, ms))
 
-const onSubmit = async values => {
-  if (values.id) {
-
-  } else {
+const toRequest = values => {
     const request = { ...values }
     request.tags = [];
     request.titleOfEvent = values.title;
     request.cityOfEvent = values.city;
     request.facebookLink = values.link;
+    return request;
+}
 
-    await agent.requests2.post('/admin/events', request)
+const onSubmit = async values => {
+  if (values.id) {
+    await agent.requests2.put('/admin/events/' + values.id, toRequest(values))
+    window.alert("Artykuł został zmieniony")
+
+  } else {
+    await agent.requests2.post('/admin/events', toRequest(values))
     window.alert("Artykuł został dodany")
   }
-
-
-  await sleep(300)
-  window.alert(JSON.stringify(values, 0, 2))
 }
 
 const fetchEvent = async id => {
@@ -39,24 +41,7 @@ const fetchEvent = async id => {
     return {}
   }
 
-  await sleep(300)
-
-  return {
-    "id": "11",
-    "startDate": "2019-09-19",
-    "endDate": "2019-09-22",
-    "title": "Krak The Shag, Hola Balboa",
-    "city": "Kraków",
-    "link": "https://www.facebook.com/events/2141970232790590/",
-    "image": null,
-    "description": "We would like to happily announce that date of Krak The Shag 2019:) It will be 4th edition of this event! <br />Let's gather together to enjoy Shag and Balboa dancing between the 19-22 September 2019!! Three days of workshops, 4 nights of parties :D, tons of hours full of joy, fun, conversations, craziness and dance of course!",
-    "status": "CONFIRMED",
-    "facts": {
-        "type": "Festiwal",
-        "style": "Collegiate Shag",
-        "bands": "Professor Cunningham and his Old School"
-    }
-  }
+  return await agent.requests2.get('/admin/events/' + id)
 }
 
 class Editor extends React.Component {
@@ -165,23 +150,31 @@ class Editor extends React.Component {
                   </div>
 
                 <button
-                  className="btn btn-lg pull-xs-right btn-primary"
+                  className="btn btn-lg float-right btn-primary"
                   type="submit"
                   disabled={submitting || pristine}>
-                  Publish event
+                  Zapisz
                 </button>
                 <button
-                  className="btn btn-lg pull-xs-right btn-secondary"
+                  className="btn btn-lg float-right btn-secondary mr-2"
                   type="button"
                   onClick={form.reset}
                   disabled={submitting || pristine}>
                   Reset
                 </button>
+                <Link to="/staff">
+               <button
+                  className="btn btn-lg float-right btn-secondary mr-2"
+                  type="button">
+                  Powrót
+                </button>
+                </Link>
 
               {/* add validation, do not show until valid */}
 
-
-              <pre>{JSON.stringify(values, 0, 2)}</pre>
+                {/*
+                  <pre>{JSON.stringify(values, 0, 2)}</pre>
+                */}
 
             </form>
           )}

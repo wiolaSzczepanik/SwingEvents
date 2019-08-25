@@ -37,9 +37,7 @@ class Home extends React.Component {
         <Banner onChange={onCityChange} initialCity={initialCity(this.props)} />
 
         <div className="container page">
-          <div className="row">
             <AdminView />
-          </div>
         </div>
 
       </div>

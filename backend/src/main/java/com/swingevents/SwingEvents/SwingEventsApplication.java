@@ -19,7 +19,9 @@ public class SwingEventsApplication {
         return new WebMvcConfigurer() {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
-                registry.addMapping("/**").allowedOrigins("http://localhost:4100");
+                registry.addMapping("/**")
+                        .allowedMethods("GET", "PUT", "DELETE", "POST", "OPTIONS")
+                        .allowedOrigins("http://localhost:4100");
             }
         };
     }
