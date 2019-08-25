@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.swingevents.SwingEvents.JsonEvent;
 import com.swingevents.SwingEvents.upcoming.EventStatus;
+import com.swingevents.SwingEvents.upcoming.UpcomingEvent;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -89,6 +90,39 @@ public class DbEvent {
         if (event.getTags() != null) {
             dbEvent.tags = String.join(",", event.getTags());
         }
+        return dbEvent;
+    }
+
+    public UpcomingEvent toUpcomingEvent() {
+        return UpcomingEvent.builder()
+                .startDate(startdate.format(DateTimeFormatter.ISO_DATE))
+                .endDate(enddate.format(DateTimeFormatter.ISO_DATE))
+                .title(title)
+                .city(city)
+                .link(facebooklink)
+                .image(image)
+                .build();
+    }
+
+    public static DbEvent fromUpcomingEvent(UpcomingEvent event, ObjectMapper mapper) {
+        DbEvent dbEvent = new DbEvent();
+        dbEvent.startdate = LocalDate.parse(event.getStartDate());
+        dbEvent.enddate = LocalDate.parse(event.getEndDate());
+        dbEvent.facebooklink = event.getLink();
+        dbEvent.image = event.getImage();
+        dbEvent.title = event.getTitle();
+        dbEvent.city = event.getCity();
+        dbEvent.description = event.getDescription();
+        dbEvent.status = EventStatus.CONFIRMED.toString();
+        try {
+            dbEvent.facts = mapper.writeValueAsString(event.getFacts());
+        } catch (JsonProcessingException e) {
+            dbEvent.facts = "{}";
+            log.error("Problem with JSON serialization", e);
+        }
+//        if (event.getTags() != null) {
+//            dbEvent.tags = String.join(",", event.getTags());
+//        }
         return dbEvent;
     }
 }
