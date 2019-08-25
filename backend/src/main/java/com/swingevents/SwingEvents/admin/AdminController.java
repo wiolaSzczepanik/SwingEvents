@@ -2,6 +2,7 @@ package com.swingevents.SwingEvents.admin;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.swingevents.SwingEvents.images.ImageFetchingService;
+import com.swingevents.SwingEvents.upcoming.EventStatus;
 import com.swingevents.SwingEvents.upcoming.UpcomingEvent;
 import lombok.extern.slf4j.Slf4j;
 
@@ -12,6 +13,8 @@ import com.swingevents.SwingEvents.db.EventsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Optional;
 
 @RestController
 @Slf4j
@@ -45,15 +48,18 @@ public class AdminController {
         DbEvent dbEvent = DbEvent.fromUpcomingEvent(event, mapper);
         dbEvent.setId(id);
 
-        DbEvent updatedEvent = eventsRepository.save(dbEvent);
-
-        updatedEvent.toUpcomingEvent();
+        eventsRepository.save(dbEvent);
     }
 
-//    @RequestMapping(value = "/events/{id}",method = RequestMethod.POST)
-//    public void postAdminEvent(@PathVariable("id") Long id, @RequestBody UpcomingEvent event) {
-//        DbEvent dbEvent = DbEvent.fromUpcomingEvent(event, mapper);
-//
-//    }
+    //not delete event from db - only change status event to 'deleted'
+    @RequestMapping(value="events/{id}", method = RequestMethod.DELETE)
+    public void changeEventStatusToDelete(@PathVariable("id") Long id){
+        log.info("Event status with id: {} was change to DELETED", id);
 
+        Optional<DbEvent> maybeEvent = eventsRepository.findById(id);
+        DbEvent dbEvent = maybeEvent.get();
+
+        dbEvent.setStatus(EventStatus.DELETED.toString());
+        eventsRepository.save(dbEvent);
+    }
 }
