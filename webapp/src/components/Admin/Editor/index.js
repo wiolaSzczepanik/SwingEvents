@@ -144,6 +144,43 @@ class Editor extends React.Component {
                   />
                 </div>
 
+                <div className="form-group">
+                  <label>Czas</label>
+                  <Field name="facts.time" component="input" type="text"
+                    placeholder="czas" className="form-control form-control-lg"
+                  />
+                  <small class="form-text text-muted">Np. 19:00-22:00, tylko jednodniowe wydarzenia</small>
+                </div>
+
+                <div className="form-group">
+                  <label>Zespół / DJ</label>
+                  <Field name="facts.bands" component="input" type="text"
+                    placeholder="Zespół albo DJ?" className="form-control form-control-lg"
+                  />
+                  <small class="form-text text-muted">Przykłady: Schwings Band, DJ Monika, DJ (kiedy nie wiadomo kto gra)</small>
+                </div>
+                <div className="form-group">
+                  <label>Nauczyciele</label>
+                  <Field name="facts.teachers" component="input" type="text"
+                    placeholder="Nauczyciele" className="form-control form-control-lg"
+                  />
+                </div>
+                <div className="form-group">
+                  <label>Miejsce</label>
+                  <Field name="facts.venue" component="input" type="text"
+                    placeholder="Adres" className="form-control form-control-lg"
+                  />
+                  <small class="form-text text-muted">Miejsce (adres) potańcówki</small>
+                </div>
+
+                <div className="form-group">
+                  <label>Cena wejściówki</label>
+                  <Field name="facts.price" component="input" type="text"
+                    placeholder="Cena" className="form-control form-control-lg"
+                  />
+                  <small class="form-text text-muted">Np.: bezpłatne, 0 + bar, 15 PLN</small>
+                </div>
+
                 <h2>Podgląd</h2>
                   <div>
                     {values && values.facts && <EventPreview event={values} />}

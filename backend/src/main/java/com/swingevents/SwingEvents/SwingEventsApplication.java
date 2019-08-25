@@ -21,7 +21,7 @@ public class SwingEventsApplication {
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**")
                         .allowedMethods("GET", "PUT", "DELETE", "POST", "OPTIONS")
-                        .allowedOrigins("http://localhost:4100");
+                        .allowedOrigins("http://localhost:4100", "https://kiedytancze.pl");
             }
         };
     }

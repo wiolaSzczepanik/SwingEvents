@@ -80,7 +80,7 @@ public class DbEvent {
         dbEvent.title = event.getTitleOfEvent();
         dbEvent.city = event.getCityOfEvent();
         dbEvent.description = event.getDescription();
-        dbEvent.status = EventStatus.CONFIRMED.toString();
+        dbEvent.status = event.getStatus();
         try {
             dbEvent.facts = mapper.writeValueAsString(event.getFacts());
         } catch (JsonProcessingException e) {
@@ -113,7 +113,7 @@ public class DbEvent {
         dbEvent.title = event.getTitle();
         dbEvent.city = event.getCity();
         dbEvent.description = event.getDescription();
-        dbEvent.status = EventStatus.CONFIRMED.toString();
+        dbEvent.status = event.getStatus().toString();
         try {
             dbEvent.facts = mapper.writeValueAsString(event.getFacts());
         } catch (JsonProcessingException e) {

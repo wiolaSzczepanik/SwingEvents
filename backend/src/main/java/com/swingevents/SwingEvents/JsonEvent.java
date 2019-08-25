@@ -15,6 +15,7 @@ public class JsonEvent {
     private String cityOfEvent;
     private String facebookLink;
     private String image;
+    private String status;
     private String description;
     private Map<String, String> facts;
     private List<String> tags;
