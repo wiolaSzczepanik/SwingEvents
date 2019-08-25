@@ -1,28 +1,21 @@
 import agent from '../agent';
 import React from 'react';
 import { connect } from 'react-redux';
-import { APP_LOAD, REDIRECT } from '../constants/actionTypes';
+import { APP_LOAD, REDIRECT } from '../state/auth/actions';
 import { Route, Switch } from 'react-router-dom';
-import Article from '../components/Article';
-import Editor from '../components/Editor/';
-import Home from '../components/Home';
+import Editor from '../components/Admin/Editor/';
+import Home from '../components/Upcoming';
 import Admin from '../components/Admin';
-import Login from '../components/Login';
-import OngoingEvent from '../components/OngoingEvent';
-import ForegoneEvent from '../components/ForegoneEvent';
-import Profile from '../components/Profile';
-import ProfileFavorites from '../components/ProfileFavorites';
-import Register from '../components/Register';
-import Settings from '../components/Settings';
-import { store } from '../store';
+import Login from '../components/Admin/Login/Login';
+import { store } from '../state/store';
 import { push } from 'react-router-redux';
 
 const mapStateToProps = state => {
   return {
-    appLoaded: state.common.appLoaded,
-    appName: state.common.appName,
-    currentUser: state.common.currentUser,
-    redirectTo: state.common.redirectTo
+    appLoaded: state.auth.appLoaded,
+    appName: state.auth.appName,
+    currentUser: state.auth.currentUser,
+    redirectTo: state.auth.redirectTo
   }};
 
 const mapDispatchToProps = dispatch => ({
@@ -60,35 +53,13 @@ class App extends React.Component {
                 <Route path="/staff/editor/:id" component={Editor} />
                 <Route path="/staff/editor" component={Editor} />
                 <Route path="/staff" render={(props) => <Admin {...props} />} />
-
                 <Route exact path="/:city" render={(props) => <Home {...props} startTab="all"/> } />
-
-//                <Route path="/ongoing" component={OngoingEvent} />
-//                <Route path="/past" render={(props) => <Home {...props} startTab="past"/> } />
-
-//                <Route path="/register" component={Register} />
-//                <Route path="/editor/:slug" component={Editor} />
-//                <Route path="/editor" component={Editor} />
-//                <Route path="/article/:id" component={Article} />
-//                <Route path="/settings" component={Settings} />
-//                <Route path="/@:username/favorites" component={ProfileFavorites} />
-//                <Route path="/@:username" component={Profile} />
             </Switch>
         </div>
       );
     }
-    return (
-      <div>
-       {/*<Header
-          appName={this.props.appName}
-          currentUser={this.props.currentUser} /> */}
-      </div>
-    );
+    return null;
   }
 }
-
-// App.contextTypes = {
-//   router: PropTypes.object.isRequired
-// };
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

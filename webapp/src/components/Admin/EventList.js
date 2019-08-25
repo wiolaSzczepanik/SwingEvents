@@ -1,4 +1,4 @@
-import EventPreview from '../EventList/EventPreview';
+import EventPreview from '../Common/Event/EventPreview';
 import React from 'react';
 import './EventList.css'
 import { Link } from 'react-router-dom';

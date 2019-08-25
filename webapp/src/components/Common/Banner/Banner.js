@@ -1,8 +1,7 @@
 import React from 'react';
 import './Banner.css'
 import { connect } from 'react-redux';
-import { CHANGE_TAB } from '../../constants/actionTypes';
-import { selectCity } from '../../state/eventFilter/actions';
+import { selectCity } from '../../../state/eventFilter/actions';
 import { withRouter } from "react-router-dom";
 
 const mapStateToProps = state => ({

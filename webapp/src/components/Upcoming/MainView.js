@@ -1,13 +1,9 @@
-import EventList from '../EventList/EventList';
+import EventList from './EventList';
 import React from 'react';
 import agent from '../../agent';
 import { connect } from 'react-redux';
-import OngoingEvent from '../OngoingEvent'
-import ForegoneEvent from '../ForegoneEvent'
 import { fetchUpcomingEventsIfNeeded } from '../../state/upcomingEvents/actions';
-
-import {Link} from 'react-router-dom';
-import { withRouter } from "react-router-dom";
+import { withRouter, Link } from "react-router-dom";
 
 function selectedEvents(events, city) {
     if (!events || !city) {
@@ -19,7 +15,6 @@ function selectedEvents(events, city) {
 const mapStateToProps = state => ({
   ...state.eventList,
   events: selectedEvents(state.upcomingEvents.events, state.eventFilter.city),
-  token: state.common.token,
   filter: state.eventFilter,
 });
 

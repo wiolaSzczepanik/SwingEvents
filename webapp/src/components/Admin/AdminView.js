@@ -14,8 +14,7 @@ function selectedEvents(events, city) {
 const mapStateToProps = state => ({
   ...state.eventList,
   events: selectedEvents(state.managedEvents.events, state.eventFilter.city),
-  tags: state.home.tags,
-  token: state.common.token,
+  token: state.auth.token,
   filter: state.eventFilter,
 });
 

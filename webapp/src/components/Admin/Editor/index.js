@@ -1,7 +1,7 @@
 import React from 'react';
-import agent from '../../agent';
+import agent from '../../../agent';
 import { connect } from 'react-redux';
-import EventPreview from '../EventList/EventPreview';
+import EventPreview from '../../Common/Event/EventPreview';
 
 import { Form, Field } from 'react-final-form'
 

@@ -1,5 +1,3 @@
-import agent from '../../agent';
-
 // action types & action creators (events)
 
 export const SELECTED_CITY = 'SELECTED_CITY';

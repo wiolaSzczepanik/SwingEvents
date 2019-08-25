@@ -1,16 +1,13 @@
-import Banner from '../Banner/Banner';
+import Banner from '../Common/Banner/Banner';
 import MainView from './MainView';
 import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from "react-router-dom";
 
 const mapStateToProps = state => ({
-  ...state.home,
-  token: state.common.token,
 });
 
 const mapDispatchToProps = dispatch => ({
-
 });
 
 const onCityChange = (history) => (city) => {

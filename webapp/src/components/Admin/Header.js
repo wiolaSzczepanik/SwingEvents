@@ -1,11 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { LOGOUT } from '../../constants/actionTypes';
+import { LOGOUT } from '../../state/auth/actions';
 
 const mapStateToProps = state => {
   return {
-    currentUser: state.common.currentUser,
+    currentUser: state.auth.currentUser,
   }
 };
 
@@ -62,7 +62,7 @@ class Header extends React.Component {
           </Link>
 
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
+        <span className="navbar-toggler-icon"></span>
       </button>
 
           <LoggedInView currentUser={this.props.currentUser} onLogout={this.props.onLogout} />

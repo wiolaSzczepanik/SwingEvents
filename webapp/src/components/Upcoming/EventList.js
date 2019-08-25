@@ -1,5 +1,4 @@
-import EventPreview from './EventPreview';
-import ListPagination from '../ListPagination';
+import EventPreview from '../Common/Event/EventPreview';
 import React from 'react';
 
 const EventList = props => {
@@ -26,11 +25,6 @@ const EventList = props => {
           );
         })
       }
-
-      <ListPagination
-        pager={props.pager}
-        articlesCount={props.eventsCount}
-        currentPage={props.currentPage} />
     </div>
   );
 };

@@ -1,5 +1,5 @@
 import React from 'react';
-import Banner from '../Banner/Banner';
+import Banner from '../Common/Banner/Banner';
 import AdminView from './AdminView';
 import Header from './Header';
 import { connect } from 'react-redux';
@@ -7,7 +7,7 @@ import { Redirect } from 'react-router'
 
 const mapStateToProps = state => ({
   ...state.home,
-  token: state.common.token,
+  token: state.auth.token,
   selectedCity: state.eventFilter.city
 });
 
