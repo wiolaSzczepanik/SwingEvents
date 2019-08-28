@@ -57,6 +57,16 @@ public class AdminController {
             }
         }
 
+        if (event.getFacts().get("type").equals(EventType.Festiwal.toString())) {
+            if (event.getFacts().containsKey("bands") &&
+                    event.getFacts().containsKey("style")) {
+                DbEvent addedEvent = getDbEvent(event);
+                return ResponseEntity.status(HttpStatus.OK).body(addedEvent.toJsonEvent());
+            }else{
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+            }
+        }
+
         DbEvent addedEvent = getDbEvent(event);
         return ResponseEntity.status(HttpStatus.OK).body(addedEvent.toJsonEvent());
 
