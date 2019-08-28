@@ -39,14 +39,24 @@ public class AdminController {
                     event.getFacts().containsKey("price") &&
                     event.getFacts().containsKey("bands") &&
                     event.getFacts().containsKey("time") &&
-                    event.getFacts().containsKey("style"))
-            {
+                    event.getFacts().containsKey("style")) {
                 DbEvent addedEvent = getDbEvent(event);
                 return ResponseEntity.status(HttpStatus.OK).body(addedEvent.toJsonEvent());
             } else {
                 return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
             }
         }
+
+        if (event.getFacts().get("type").equals(EventType.Warsztaty.toString())) {
+            if (event.getFacts().containsKey("teachers") &&
+                    event.getFacts().containsKey("style")) {
+                DbEvent addedEvent = getDbEvent(event);
+                return ResponseEntity.status(HttpStatus.OK).body(addedEvent.toJsonEvent());
+            }else{
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+            }
+        }
+
         DbEvent addedEvent = getDbEvent(event);
         return ResponseEntity.status(HttpStatus.OK).body(addedEvent.toJsonEvent());
 
