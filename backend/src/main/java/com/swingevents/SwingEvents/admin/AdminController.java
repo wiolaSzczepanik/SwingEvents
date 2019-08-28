@@ -37,7 +37,7 @@ public class AdminController {
     public ResponseEntity<JsonEvent> addEvent(@RequestBody JsonEvent event) throws Exception {
         log.info(event.toString());
         if(event.getFacts().get("type").equals(EventType.Potańcówka.toString())){
-            if(event.getFacts().containsKey("venue")) {
+            if(event.getFacts().containsKey("venue") && event.getFacts().containsKey("price")) {
                 DbEvent addedEvent = getDbEvent(event);
                 return ResponseEntity.status(HttpStatus.OK).body(addedEvent.toJsonEvent());
             }
