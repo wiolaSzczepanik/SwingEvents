@@ -11,6 +11,8 @@ import com.swingevents.SwingEvents.db.DbEvent;
 import com.swingevents.SwingEvents.db.EventsRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 
@@ -32,13 +34,26 @@ public class AdminController {
     private ObjectMapper mapper;
 
     @RequestMapping("/events")
-    public JsonEvent addEvent(@RequestBody JsonEvent event) throws Exception {
+    public ResponseEntity<JsonEvent> addEvent(@RequestBody JsonEvent event) throws Exception {
         log.info(event.toString());
+        if(event.getFacts().get("type").equals(EventType.Potańcówka.toString())){
+            if(event.getFacts().containsKey("venue")) {
+                DbEvent addedEvent = getDbEvent(event);
+                return ResponseEntity.status(HttpStatus.OK).body(addedEvent.toJsonEvent());
+            }
+            else {
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+            }
+        }
+        DbEvent addedEvent = getDbEvent(event);
+        return ResponseEntity.status(HttpStatus.OK).body(addedEvent.toJsonEvent());
+
+    }
+
+    private DbEvent getDbEvent(@RequestBody JsonEvent event) throws Exception {
         DbEvent addedEvent = eventsRepository.save(DbEvent.fromJsonEvent(event, mapper));
-
         imageFetchingService.uploadImage(addedEvent.getId().intValue(), event.getImage());
-
-        return addedEvent.toJsonEvent();
+        return addedEvent;
     }
 
     @RequestMapping(value = "/events/{id}",method = RequestMethod.GET)
