@@ -34,49 +34,15 @@ public class AdminController {
     @RequestMapping("/events")
     public ResponseEntity<JsonEvent> addEvent(@RequestBody JsonEvent event) throws Exception {
         log.info(event.toString());
+
         if (event.getFacts().get("type").equals(EventType.Potańcówka.toString())) {
-            if (event.getFacts().containsKey("venue") &&
-                    event.getFacts().containsKey("price") &&
-                    event.getFacts().containsKey("bands") &&
-                    event.getFacts().containsKey("time") &&
-                    event.getFacts().containsKey("style")) {
-                DbEvent addedEvent = getDbEvent(event);
-                return ResponseEntity.status(HttpStatus.OK).body(addedEvent.toJsonEvent());
-            } else {
-                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
-            }
+            return potancowkaEventValidation(event);
+        } else if (event.getFacts().get("type").equals(EventType.Warsztaty.toString())) {
+            return warsztatyEventValidation(event);
         }
-
-        if (event.getFacts().get("type").equals(EventType.Warsztaty.toString())) {
-            if (event.getFacts().containsKey("teachers") &&
-                    event.getFacts().containsKey("style")) {
-                DbEvent addedEvent = getDbEvent(event);
-                return ResponseEntity.status(HttpStatus.OK).body(addedEvent.toJsonEvent());
-            }else{
-                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
-            }
-        }
-
-        if (event.getFacts().get("type").equals(EventType.Festiwal.toString())) {
-            if (event.getFacts().containsKey("bands") &&
-                    event.getFacts().containsKey("style")) {
-                DbEvent addedEvent = getDbEvent(event);
-                return ResponseEntity.status(HttpStatus.OK).body(addedEvent.toJsonEvent());
-            }else{
-                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
-            }
-        }
-
-        DbEvent addedEvent = getDbEvent(event);
-        return ResponseEntity.status(HttpStatus.OK).body(addedEvent.toJsonEvent());
-
+        return festiwalEventValidation(event);
     }
 
-    private DbEvent getDbEvent(@RequestBody JsonEvent event) throws Exception {
-        DbEvent addedEvent = eventsRepository.save(DbEvent.fromJsonEvent(event, mapper));
-        imageFetchingService.uploadImage(addedEvent.getId().intValue(), event.getImage());
-        return addedEvent;
-    }
 
     @RequestMapping(value = "/events/{id}", method = RequestMethod.GET)
     public UpcomingEvent getSingleEvent(@PathVariable("id") Long id) {
@@ -105,4 +71,47 @@ public class AdminController {
         dbEvent.setStatus(EventStatus.DELETED.toString());
         eventsRepository.save(dbEvent);
     }
+
+    private ResponseEntity<JsonEvent> festiwalEventValidation(@RequestBody JsonEvent event) throws Exception {
+        if (event.getFacts().containsKey("bands") &&
+                event.getFacts().containsKey("style")) {
+            DbEvent addedEvent = getDbEvent(event);
+            log.info("Add FESTIWAL event: {}", event.toString());
+            return ResponseEntity.status(HttpStatus.OK).body(addedEvent.toJsonEvent());
+        } else {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+        }
+    }
+
+    private ResponseEntity<JsonEvent> warsztatyEventValidation(@RequestBody JsonEvent event) throws Exception {
+        if (event.getFacts().containsKey("teachers") &&
+                event.getFacts().containsKey("style")) {
+            DbEvent addedEvent = getDbEvent(event);
+            log.info("Add WARSZTATY event: {}", event.toString());
+            return ResponseEntity.status(HttpStatus.OK).body(addedEvent.toJsonEvent());
+        } else {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+        }
+    }
+
+    private ResponseEntity<JsonEvent> potancowkaEventValidation(@RequestBody JsonEvent event) throws Exception {
+        if (event.getFacts().containsKey("venue") &&
+                event.getFacts().containsKey("price") &&
+                event.getFacts().containsKey("bands") &&
+                event.getFacts().containsKey("time") &&
+                event.getFacts().containsKey("style")) {
+            DbEvent addedEvent = getDbEvent(event);
+            log.info("Add POTAŃCÓWKA event: {}", event.toString());
+            return ResponseEntity.status(HttpStatus.OK).body(addedEvent.toJsonEvent());
+        } else {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+        }
+    }
+
+    private DbEvent getDbEvent(@RequestBody JsonEvent event) throws Exception {
+        DbEvent addedEvent = eventsRepository.save(DbEvent.fromJsonEvent(event, mapper));
+        imageFetchingService.uploadImage(addedEvent.getId().intValue(), event.getImage());
+        return addedEvent;
+    }
+
 }
