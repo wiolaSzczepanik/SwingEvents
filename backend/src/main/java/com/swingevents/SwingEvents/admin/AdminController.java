@@ -39,8 +39,10 @@ public class AdminController {
             return potancowkaEventValidation(event);
         } else if (event.getFacts().get("type").equals(EventType.Warsztaty.toString())) {
             return warsztatyEventValidation(event);
+        } else if (event.getFacts().get("type").equals(EventType.Festiwal.toString())) {
+            return festiwalEventValidation(event);
         }
-        return festiwalEventValidation(event);
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
     }
 
 
