@@ -1,25 +1,28 @@
 .DateRange {
-    font-size: 35px;
     text-align: center;
     text-transform: uppercase;
     color: #5cb85c;
     font-weight: bold;
-    margin-top: 20px;
-
+    font-size: 30px;
+    margin-bottom: 10px;
 }
 
-.col-xs-12 .DateRange {
+.d-md-none .DateRange {
     margin-top: 0;
     font-size: 25px;
     text-align: left;
+    color: #fff;
+    background-color: #5cb85c;
+    margin-bottom: 5px;
+    padding-left: 15px;
 }
 
 
-.col-xs-12 .DateRange_dayname {
+.d-md-none .DateRange_dayname {
     display: inline;
     margin-right: 20px
 }
 
-.col-xs-12 .DateRange_date {
+.d-md-none .DateRange_date {
     display: inline;
 }

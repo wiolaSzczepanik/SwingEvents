@@ -21,12 +21,12 @@ const EventPreview = props => {
   return (
     <a href={event.link} target="_blank">
         {/* Wide screen */}
-        <div className="d-none d-sm-block">
+        <div className="d-none d-lg-block">
         <div className={'EventPreview row ' + (event.status === 'NOT_CONFIRMED' ? 'EventPreview_not-confirmed' : '')}>
-            <div className="col-2">
-             <img src={agent.API_ROOT_2 + '/images/' + event.id} />
+            <div className="col-md-auto">
+             <img className="img-thumbnail" src={agent.API_ROOT_2 + '/images/' + event.id} />
             </div>
-            <div className="col-8">
+            <div className="col">
                 <h1>{event.title}</h1>
                 <p>
                 {
@@ -48,23 +48,81 @@ const EventPreview = props => {
                 </p>
 
             </div>
-            <div className="col-2">
+            <div className="col-md-auto">
+                <div className="img-thumbnail EventPreview_bigtime">
                 <DateRange start={event.startDate} end={event.endDate} />
                 {
                    event.status === 'NOT_CONFIRMED'
                         && <div className="EventPreview_not-confirmed-badge badge badge-success" role="alert"> Niepotwierdzone! </div>
                 }
-
+                </div>
             </div>
         </div>
     </div>
+     {/* Tablet screen */}
+        <div className="d-none d-md-block d-lg-none">
+            <div className={'EventPreview ' + (event.status === 'NOT_CONFIRMED' ? 'EventPreview_not-confirmed' : '')}>
+               <div className="float-left">
+
+                     <div className="img-thumbnail EventPreview_bigtime">
+                        <DateRange start={event.startDate} end={event.endDate} />
+                    </div>
+                      {
+                                           event.status === 'NOT_CONFIRMED'
+                                                && <div className="EventPreview_not-confirmed-badge badge badge-success" role="alert"> Niepotwierdzone! </div>
+                                        }
+                    <img className="img-thumbnail"  src={agent.API_ROOT_2 + '/images/' + event.id} />
+               </div>
+               <div class="col">
+
+                    <h1>{event.title}</h1>
+                    <p>
+                    {
+                        infoIconsAndOrder.map(infoRecord => {
+                          if(infoRecord.info in info) {
+                            const value = info[infoRecord.info];
+
+                            return (
+                                <div className="EventPreview_info"> <i className={'fas ' + infoRecord.icon}></i> {value}</div>
+                            );
+                          } else {
+                            return null;
+                          }
+                        })
+                    }
+                    </p>
+                    <p>
+                        {event.description}
+                    </p>
+
+                </div>
+
+
+            </div>
+            </div>
     {/* Mobile screen */}
-    <div className="d-block d-sm-none">
-        <div className="EventPreview row">
-        <div className="col-xs-12">
-             <DateRange start={event.startDate} end={event.endDate} />
+    <div className="d-block d-md-none">
+        <div className={'EventPreview ' + (event.status === 'NOT_CONFIRMED' ? 'EventPreview_not-confirmed' : '')}>
+
+          <div className="row">
+
+             <div className="col-xs-12 w-100">
+
+               <DateRange start={event.startDate} end={event.endDate} />
+
              </div>
-            <div className="col-xs-12">
+             </div>
+             <div className="row">
+  <div className="col-xs-12 w-100">
+                                                  {
+                                                         event.status === 'NOT_CONFIRMED'
+                                                              && <div className="EventPreview_not-confirmed-badge badge badge-success" role="alert"> Niepotwierdzone! </div>
+                                                  }
+
+                                       </div>
+          </div>
+          <div className="row">
+            <div className="col">
                 <h1>{event.title}</h1>
                 <p>
                 {
@@ -84,14 +142,16 @@ const EventPreview = props => {
 
                 </div>
 
-                <div className="col-xs-12">
+            </div>
+            <div className="row">
+                <div className="col">
                 <p>
                     <img src={agent.API_ROOT_2 + '/images/' + event.id} />
                     {event.description}
                 </p>
 
             </div>
-
+        </div>
         </div>
         </div>
     </a>
