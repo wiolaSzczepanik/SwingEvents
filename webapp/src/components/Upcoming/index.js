@@ -1,5 +1,6 @@
 import Banner from '../Common/Banner/Banner';
 import MainView from './MainView';
+import Footer from './Footer';
 import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from "react-router-dom";
@@ -40,12 +41,14 @@ class Home extends React.Component {
   render() {
     return (
       <div className="home-page">
-        <Banner onChange={onCityChange(this.props.history)} initialCity={initialCity(this.props.match.params.city)}/>
-
-        <div className="container page">
-            <MainView />
+        <div id="wrap">
+            <Banner onChange={onCityChange(this.props.history)} initialCity={initialCity(this.props.match.params.city)}/>
+            <div className="container page clear-top">
+                <MainView />
+            </div>
         </div>
 
+        <Footer />
       </div>
     );
   }

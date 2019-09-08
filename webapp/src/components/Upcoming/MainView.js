@@ -32,9 +32,11 @@ class MainView extends React.Component {
 
   render() {
     return (
+    <div>
       <EventList
         events={this.props.events}
         loading={this.props.loading}/>
+       </div>
     );
   }
 };
