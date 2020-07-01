@@ -25,11 +25,11 @@ public class ExampleTest {
                 .statusCode(404);
     }
 
-    @Test
+    @Test //TODO do not understand why is not passing
     public void shouldReturn404WhenchangingNotExistingEvent() throws ParseException {
 
         String event = "{" +
-                " \"id\":\"1234\"," +
+                " \"id\":\"12345\"," +
                 " \"startDate\":\"2019-09-19\"," +
                 " \"endDate\":\"2019-09-19\"," +
                 " \"status\":\"CONFIRMED\"}";
@@ -42,7 +42,7 @@ public class ExampleTest {
                 .when()
                 .contentType(ContentType.JSON)
                 .body(event)
-                .put("/admin/events/1234")
+                .put("/admin/events/12345")
                 .then()
                 .log().all()
                 .statusCode(404);
@@ -50,7 +50,7 @@ public class ExampleTest {
     }
 
     @Test
-    public void shouldAddEventToUpcomingEventList() {
+    public void shouldAddPotańcówkaEventToUpcomingEventList() {
         String event = "{" +
                 " \"id\":\"0\"," +
                 " \"startDate\":\"2019-09-19\"," +
@@ -61,11 +61,146 @@ public class ExampleTest {
                 " \"facebookLink\":\"http://www.google.com\"," +
                 " \"description\":\"Description\"," +
                 " \"facts\":{" +
-                            " \"type\": \"Type\"," +
-                            " \"style\": \"Style\"," +
+                            " \"type\": \"Potańcówka\"," +
                             " \"time\": \"19:30-22:00\"," +
                             " \"price\": \"price\"," +
+                            " \"style\": \"style\"," +
+                            " \"bands\": \"bands\"," +
                             " \"venue\": \"Venue\"}," +
+                " \"tags\":[],"+
+                " \"status\":\"CONFIRMED\"}";
+
+        RestAssured.given()
+                .auth()
+                .preemptive()
+                .basic("wiola", "wiola")
+                .when()
+                .contentType(ContentType.JSON)
+                .body(event)
+                .post("/admin/events")
+                .then()
+                .log()
+                .all()
+                .assertThat()
+                .statusCode(200);
+
+        RestAssured.given()
+                .when()
+                .contentType(ContentType.JSON)
+                .get("/upcoming?city=City")
+                .then()
+                .log()
+                .all()
+                .assertThat()
+                .statusCode(200)
+                .body("$", Matchers.hasSize(Matchers.greaterThan(0)));
+    }
+
+    @Test
+    public void shouldAddWarsztatyEventToUpcomingEventList() {
+        String event = "{" +
+                " \"id\":\"0\"," +
+                " \"startDate\":\"2019-09-19\"," +
+                " \"endDate\":\"2019-09-19\"," +
+                " \"titleOfEvent\":\"title\"," +
+                " \"cityOfEvent\":\"City\"," +
+                " \"image\":\"http://kraktheshag.com/wp-content/uploads/2014/05/baner_obszar-roboczy-1.jpg\"," +
+                " \"facebookLink\":\"http://www.google.com\"," +
+                " \"description\":\"Description\"," +
+                " \"facts\":{" +
+                " \"type\": \"Warsztaty\"," +
+                " \"style\": \"style\"," +
+                " \"teachers\": \"teachers\"," +
+                " \"venue\": \"Venue\"}," +
+                " \"tags\":[],"+
+                " \"status\":\"CONFIRMED\"}";
+
+        RestAssured.given()
+                .auth()
+                .preemptive()
+                .basic("wiola", "wiola")
+                .when()
+                .contentType(ContentType.JSON)
+                .body(event)
+                .post("/admin/events")
+                .then()
+                .log()
+                .all()
+                .assertThat()
+                .statusCode(200);
+
+        RestAssured.given()
+                .when()
+                .contentType(ContentType.JSON)
+                .get("/upcoming?city=City")
+                .then()
+                .log()
+                .all()
+                .assertThat()
+                .statusCode(200)
+                .body("$", Matchers.hasSize(Matchers.greaterThan(0)));
+    }
+
+    @Test
+    public void shouldAddFestiwalEventToUpcomingEventList() {
+        String event = "{" +
+                " \"id\":\"0\"," +
+                " \"startDate\":\"2019-09-19\"," +
+                " \"endDate\":\"2019-09-19\"," +
+                " \"titleOfEvent\":\"title\"," +
+                " \"cityOfEvent\":\"City\"," +
+                " \"image\":\"http://kraktheshag.com/wp-content/uploads/2014/05/baner_obszar-roboczy-1.jpg\"," +
+                " \"facebookLink\":\"http://www.google.com\"," +
+                " \"description\":\"Description\"," +
+                " \"facts\":{" +
+                " \"type\": \"Farsztaty\"," +
+                " \"style\": \"style\"," +
+                " \"bands\": \"bands\"}," +
+                " \"tags\":[],"+
+                " \"status\":\"CONFIRMED\"}";
+
+        RestAssured.given()
+                .auth()
+                .preemptive()
+                .basic("wiola", "wiola")
+                .when()
+                .contentType(ContentType.JSON)
+                .body(event)
+                .post("/admin/events")
+                .then()
+                .log()
+                .all()
+                .assertThat()
+                .statusCode(200);
+
+        RestAssured.given()
+                .when()
+                .contentType(ContentType.JSON)
+                .get("/upcoming?city=City")
+                .then()
+                .log()
+                .all()
+                .assertThat()
+                .statusCode(200)
+                .body("$", Matchers.hasSize(Matchers.greaterThan(0)));
+    }
+
+
+    @Test
+    public void shouldNotAddEventToUpcomingEventList() {
+        String event = "{" +
+                " \"id\":\"0\"," +
+                " \"startDate\":\"2019-09-19\"," +
+                " \"endDate\":\"2019-09-19\"," +
+                " \"titleOfEvent\":\"title\"," +
+                " \"cityOfEvent\":\"City\"," +
+                " \"image\":\"http://kraktheshag.com/wp-content/uploads/2014/05/baner_obszar-roboczy-1.jpg\"," +
+                " \"facebookLink\":\"http://www.google.com\"," +
+                " \"description\":\"Description\"," +
+                " \"facts\":{" +
+                    " \"type\": \"AnotherType\"," +
+                    " \"style\": \"style\"," +
+                    " \"bands\": \"bands\"}," +
                 " \"tags\":[],"+
                 " \"status\":\"CONFIRMED\"}";
 
